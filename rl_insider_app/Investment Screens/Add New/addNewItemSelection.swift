@@ -13,17 +13,18 @@ class addNewItemSelection: UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        searchBar.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
         
-        searchBar.delegate = self
         
         filteredData = items
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name("reloadItems"), object: nil)
         
         tableView.reloadData()
+        
     }
     
     @objc func reloadTableView()
@@ -71,6 +72,8 @@ extension addNewItemSelection: UITableViewDelegate, UITableViewDataSource
         return 44
     }
 }
+
+
 
 extension addNewItemSelection: UISearchBarDelegate
 {

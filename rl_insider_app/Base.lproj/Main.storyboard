@@ -280,7 +280,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0dH-Ac-cu0">
-                                <rect key="frame" x="0.0" y="139" width="414" height="757"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="itemSelectionCell" id="VyX-Wv-mTl" customClass="itemSelectionCell" customModule="rl_insider_app" customModuleProvider="target">
@@ -322,7 +322,7 @@
                             <constraint firstItem="tVL-db-Z6T" firstAttribute="trailing" secondItem="0dH-Ac-cu0" secondAttribute="trailing" id="Jrt-f4-ygd"/>
                             <constraint firstItem="Klt-3O-dMD" firstAttribute="trailing" secondItem="tVL-db-Z6T" secondAttribute="trailing" id="MO0-1z-3ps"/>
                             <constraint firstItem="Klt-3O-dMD" firstAttribute="leading" secondItem="tVL-db-Z6T" secondAttribute="leading" id="NV9-Ef-dOc"/>
-                            <constraint firstAttribute="bottom" secondItem="0dH-Ac-cu0" secondAttribute="bottom" id="T0H-gP-9Ky"/>
+                            <constraint firstItem="tVL-db-Z6T" firstAttribute="bottom" secondItem="0dH-Ac-cu0" secondAttribute="bottom" id="T0H-gP-9Ky"/>
                             <constraint firstItem="0dH-Ac-cu0" firstAttribute="leading" secondItem="tVL-db-Z6T" secondAttribute="leading" id="dFx-dn-z7a"/>
                         </constraints>
                     </view>
