@@ -9,7 +9,16 @@ import UIKit
 
 class investmentOverview: UIViewController {
 
+    @IBOutlet var totalBackground: UIView!
+    @IBOutlet var totalSpentLabel: UILabel!
+    @IBOutlet var totalIfSoldLabel: UILabel!
+    @IBOutlet var totalProfitLabel: UILabel!
+    
+    @IBOutlet var totalBarButton: UIBarButtonItem!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +34,21 @@ class investmentOverview: UIViewController {
         tableView.reloadData()
         
         self.title = "Investments"
+        
+        totalSpentLabel.text = ""
+        totalIfSoldLabel.text = ""
+        totalProfitLabel.text = ""
+        
+        totalBackground.isHidden = true
+        totalBarButton.isEnabled = false
+        
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        totalBackground.addBorder(.top, color: .lightGray, thickness: 0.4)
     }
     
     @IBAction func addNewButton(_ sender: Any) {
@@ -39,7 +63,33 @@ class investmentOverview: UIViewController {
     
     @objc func reloadTableView()
     {
+        /*
+        //get total spent, go through investments and add up
+        var totalSpent = 0
+        var totalIfSoldLowerBound = 0
+        var totalIfSoldUpperBound = 0
+        var i = 0
+        while i != investments.count
+        {
+            totalSpent += (investments[i].boughtFor * investments[i].quantity)
+            totalIfSoldLowerBound += investments[i].item.getColourPrice(colour: investments[i].colour, onPlatform: investments[i].platform)![0] * investments[i].quantity
+            totalIfSoldUpperBound += investments[i].item.getColourPrice(colour: investments[i].colour, onPlatform: investments[i].platform)![1] * investments[i].quantity
+            i += 1
+        }
+        
+        let totalProfitLowerBound = totalIfSoldLowerBound - totalSpent
+        let totalProfitUpperBound = totalIfSoldUpperBound - totalSpent
+        
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
+        
+        totalSpentLabel.text = "Total Spent : \(String(totalSpent))"
+        totalIfSoldLabel.text = "Total if Sold Now: \(totalIfSoldLowerBound) - \(totalIfSoldUpperBound)"
+        totalProfitLabel.text = "Total Profit: \(totalProfitLowerBound) - \(totalProfitUpperBound)"
+         */
         tableView.reloadData()
+        
+        totalBarButton.isEnabled = true
     }
     
     @objc func reloadTableViewDelay()
@@ -80,6 +130,34 @@ class investmentOverview: UIViewController {
         self.performSegue(withIdentifier: "addNew", sender: self)
     }
 
+    @IBAction func showTotal(_ sender: Any) {
+        //get total spent, go through investments and add up
+        var totalSpent = 0
+        var totalIfSoldLowerBound = 0
+        var totalIfSoldUpperBound = 0
+        var i = 0
+        while i != investments.count
+        {
+            totalSpent += (investments[i].boughtFor * investments[i].quantity)
+            totalIfSoldLowerBound += investments[i].item.getColourPrice(colour: investments[i].colour, onPlatform: investments[i].platform)![0] * investments[i].quantity
+            totalIfSoldUpperBound += investments[i].item.getColourPrice(colour: investments[i].colour, onPlatform: investments[i].platform)![1] * investments[i].quantity
+            i += 1
+        }
+        
+        let totalProfitLowerBound = totalIfSoldLowerBound - totalSpent
+        let totalProfitUpperBound = totalIfSoldUpperBound - totalSpent
+        
+        var message = ""
+        message.append("Total Spent : \(String(totalSpent))\n")
+        message.append("Total if Sold Now: \(totalIfSoldLowerBound) - \(totalIfSoldUpperBound)\n")
+        message.append("Total Profit: \(totalProfitLowerBound) - \(totalProfitUpperBound)")
+        
+        let alert = UIAlertController(title: "Total", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
 }
 
 extension investmentOverview: UITableViewDelegate, UITableViewDataSource

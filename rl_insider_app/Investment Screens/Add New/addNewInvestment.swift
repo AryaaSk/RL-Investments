@@ -24,10 +24,12 @@ class addNewInvestment: UIViewController {
         if editingMode == false
         {
             addButtonOutlet.title = "Add"
+            self.title = "Add New Investment"
         }
         else
         {
             addButtonOutlet.title = "Done"
+            self.title = "Edit Investment"
         }
     }
     

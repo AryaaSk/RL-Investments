@@ -477,17 +477,66 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lY9-x9-yQU">
+                                <rect key="frame" x="0.0" y="683" width="414" height="130"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="758-Ay-2xu">
+                                        <rect key="frame" x="188.5" y="46.5" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NiB-GD-szU">
+                                        <rect key="frame" x="15" y="10" width="384" height="110"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Spent: 25000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXD-xa-Tis">
+                                                <rect key="frame" x="0.0" y="0.0" width="384" height="36.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18.5"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total if Sold Now: 34000 - 39000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bv-oC-Bpm">
+                                                <rect key="frame" x="0.0" y="36.5" width="384" height="37"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18.5"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Profit: 9000 - 14000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpQ-h9-I2O">
+                                                <rect key="frame" x="0.0" y="73.5" width="384" height="36.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18.5"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="758-Ay-2xu" firstAttribute="centerX" secondItem="lY9-x9-yQU" secondAttribute="centerX" id="4lS-eH-4Sx"/>
+                                    <constraint firstAttribute="height" constant="130" id="5NM-ML-zwb"/>
+                                    <constraint firstItem="NiB-GD-szU" firstAttribute="top" secondItem="lY9-x9-yQU" secondAttribute="top" constant="10" id="C0u-HB-Nv2"/>
+                                    <constraint firstAttribute="trailing" secondItem="NiB-GD-szU" secondAttribute="trailing" constant="15" id="CxL-9D-Ya6"/>
+                                    <constraint firstItem="758-Ay-2xu" firstAttribute="centerY" secondItem="lY9-x9-yQU" secondAttribute="centerY" id="iXf-Kk-NJS"/>
+                                    <constraint firstAttribute="bottom" secondItem="NiB-GD-szU" secondAttribute="bottom" constant="10" id="s6D-lN-JQC"/>
+                                    <constraint firstItem="NiB-GD-szU" firstAttribute="leading" secondItem="lY9-x9-yQU" secondAttribute="leading" constant="15" id="swI-oy-Vhh"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kv0-MD-xyX"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="1gg-3V-2EF" firstAttribute="top" secondItem="kv0-MD-xyX" secondAttribute="top" id="01r-nq-xhD"/>
                             <constraint firstItem="1gg-3V-2EF" firstAttribute="leading" secondItem="kv0-MD-xyX" secondAttribute="leading" id="8T4-Dl-iNU"/>
+                            <constraint firstItem="kv0-MD-xyX" firstAttribute="trailing" secondItem="lY9-x9-yQU" secondAttribute="trailing" id="8bF-pK-lYf"/>
                             <constraint firstItem="kv0-MD-xyX" firstAttribute="trailing" secondItem="1gg-3V-2EF" secondAttribute="trailing" id="eCa-zg-0Rr"/>
+                            <constraint firstItem="kv0-MD-xyX" firstAttribute="bottom" secondItem="lY9-x9-yQU" secondAttribute="bottom" id="eLv-o8-TXK"/>
+                            <constraint firstItem="lY9-x9-yQU" firstAttribute="leading" secondItem="kv0-MD-xyX" secondAttribute="leading" id="krE-F2-z5s"/>
                             <constraint firstItem="kv0-MD-xyX" firstAttribute="bottom" secondItem="1gg-3V-2EF" secondAttribute="bottom" id="uPh-QJ-QGp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MHK-gU-nko">
+                        <barButtonItem key="leftBarButtonItem" title="Total" id="lDy-FB-kWW">
+                            <connections>
+                                <action selector="showTotal:" destination="2f1-ph-sYZ" id="Cpy-y1-nV1"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="d7A-iz-AAW">
                             <connections>
                                 <action selector="addNewButton:" destination="2f1-ph-sYZ" id="fkt-EM-PQO"/>
@@ -495,7 +544,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="758-Ay-2xu" id="eC2-51-Sc8"/>
                         <outlet property="tableView" destination="1gg-3V-2EF" id="aOt-dH-yXJ"/>
+                        <outlet property="totalBackground" destination="lY9-x9-yQU" id="1HD-PY-qTH"/>
+                        <outlet property="totalBarButton" destination="lDy-FB-kWW" id="jjq-x9-YjK"/>
+                        <outlet property="totalIfSoldLabel" destination="2bv-oC-Bpm" id="iWF-Nd-Db7"/>
+                        <outlet property="totalProfitLabel" destination="MpQ-h9-I2O" id="W0H-mN-xO3"/>
+                        <outlet property="totalSpentLabel" destination="cXD-xa-Tis" id="laU-Ht-X4g"/>
                         <segue destination="gkQ-6q-pPX" kind="show" identifier="addNew" id="vOO-Ji-bvk"/>
                     </connections>
                 </viewController>
@@ -509,9 +564,11 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7IV-P1-b15" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Investments" image="arrow.up.forward" catalog="system" id="g85-ea-uUj"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qqF-TP-DPx">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="qqF-TP-DPx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <color key="barTintColor" systemColor="systemGroupedBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
