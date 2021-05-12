@@ -63,32 +63,7 @@ class investmentOverview: UIViewController {
     
     @objc func reloadTableView()
     {
-        /*
-        //get total spent, go through investments and add up
-        var totalSpent = 0
-        var totalIfSoldLowerBound = 0
-        var totalIfSoldUpperBound = 0
-        var i = 0
-        while i != investments.count
-        {
-            totalSpent += (investments[i].boughtFor * investments[i].quantity)
-            totalIfSoldLowerBound += investments[i].item.getColourPrice(colour: investments[i].colour, onPlatform: investments[i].platform)![0] * investments[i].quantity
-            totalIfSoldUpperBound += investments[i].item.getColourPrice(colour: investments[i].colour, onPlatform: investments[i].platform)![1] * investments[i].quantity
-            i += 1
-        }
-        
-        let totalProfitLowerBound = totalIfSoldLowerBound - totalSpent
-        let totalProfitUpperBound = totalIfSoldUpperBound - totalSpent
-        
-        activityIndicator.stopAnimating()
-        activityIndicator.isHidden = true
-        
-        totalSpentLabel.text = "Total Spent : \(String(totalSpent))"
-        totalIfSoldLabel.text = "Total if Sold Now: \(totalIfSoldLowerBound) - \(totalIfSoldUpperBound)"
-        totalProfitLabel.text = "Total Profit: \(totalProfitLowerBound) - \(totalProfitUpperBound)"
-         */
         tableView.reloadData()
-        
         totalBarButton.isEnabled = true
     }
     
@@ -147,10 +122,22 @@ class investmentOverview: UIViewController {
         let totalProfitLowerBound = totalIfSoldLowerBound - totalSpent
         let totalProfitUpperBound = totalIfSoldUpperBound - totalSpent
         
+        var profitLowerBoundString = String(totalProfitLowerBound)
+        var profitUpperBoundString = String(totalProfitUpperBound)
+        
+        if totalProfitLowerBound < 0
+        {
+            profitLowerBoundString = "(\(String(totalProfitLowerBound)))"
+        }
+        if totalProfitUpperBound < 0
+        {
+            profitUpperBoundString = "(\(String(totalProfitUpperBound)))"
+        }
+        
         var message = ""
         message.append("Total Spent : \(String(totalSpent))\n")
         message.append("Total if Sold Now: \(totalIfSoldLowerBound) - \(totalIfSoldUpperBound)\n")
-        message.append("Total Profit: \(totalProfitLowerBound) - \(totalProfitUpperBound)")
+        message.append("Total Profit: \(profitLowerBoundString) - \(profitUpperBoundString)")
         
         let alert = UIAlertController(title: "Total", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
@@ -207,7 +194,22 @@ extension investmentOverview: UITableViewDelegate, UITableViewDataSource
         cell.totalNowLabel.text = "Total if Sold Now: \(priceRange![0] * investments[indexPath.row].quantity) - \(priceRange![1] * investments[indexPath.row].quantity)"
         
         let totalSpent = investments[indexPath.row].quantity * investments[indexPath.row].boughtFor
-        cell.profitLabel.text = "Profit: \(priceRange![0] * investments[indexPath.row].quantity - totalSpent) - \(priceRange![1] * investments[indexPath.row].quantity - totalSpent)"
+        let profitLowerBound = priceRange![0] * investments[indexPath.row].quantity - totalSpent
+        let profitUpperBound = priceRange![1] * investments[indexPath.row].quantity - totalSpent
+        
+        var profitLowerBoundString = String(profitLowerBound)
+        var profitUpperBoundString = String(profitUpperBound)
+        
+        if profitLowerBound < 0
+        {
+            profitLowerBoundString = "(\(String(profitLowerBound)))"
+        }
+        if profitUpperBound < 0
+        {
+            profitUpperBoundString = "(\(String(profitUpperBound)))"
+        }
+        
+        cell.profitLabel.text = "Profit: \(profitLowerBoundString) - \(profitUpperBoundString)"
         
         cell.tag = indexPath.row
         return cell
