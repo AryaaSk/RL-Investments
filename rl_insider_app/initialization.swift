@@ -30,6 +30,21 @@ func initializeData()
             }
             filteredData = items
             
+            //update all investments
+            var i = 0
+            while i != investments.count
+            {
+                for item in items
+                {
+                    if investments[i].item.itemName == item.itemName
+                    {
+                        investments[i].item = item
+                    }
+                }
+                i += 1
+            }
+            saveInvestmentsData()
+            
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: NSNotification.Name("reloadItems"), object: nil)
             }

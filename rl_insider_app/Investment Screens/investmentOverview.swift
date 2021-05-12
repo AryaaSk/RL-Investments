@@ -18,6 +18,7 @@ class investmentOverview: UIViewController {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var tableView: UITableView!
     
+    @IBOutlet var mainActivityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +43,13 @@ class investmentOverview: UIViewController {
         totalBackground.isHidden = true
         totalBarButton.isEnabled = false
         
+        tableView.isHidden = true
+        
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
+        
+        mainActivityIndicator.isHidden = false
+        mainActivityIndicator.startAnimating()
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,6 +69,9 @@ class investmentOverview: UIViewController {
     
     @objc func reloadTableView()
     {
+        mainActivityIndicator.isHidden = true
+        mainActivityIndicator.stopAnimating()
+        tableView.isHidden = false
         tableView.reloadData()
         totalBarButton.isEnabled = true
     }
@@ -137,7 +146,7 @@ class investmentOverview: UIViewController {
         var message = ""
         message.append("Total Spent : \(String(totalSpent))\n")
         message.append("Total if Sold Now: \(totalIfSoldLowerBound) - \(totalIfSoldUpperBound)\n")
-        message.append("Total Profit: \(profitLowerBoundString) - \(profitUpperBoundString)")
+        message.append("Total Profit/Loss: \(profitLowerBoundString) - \(profitUpperBoundString)")
         
         let alert = UIAlertController(title: "Total", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
@@ -187,7 +196,7 @@ extension investmentOverview: UITableViewDelegate, UITableViewDataSource
             cell.totalBoughtSpentLabel.text = "Bought \(investments[indexPath.row].quantity) for \(investments[indexPath.row].boughtFor)"
         }
         
-        let priceRange = investments[indexPath.row].item.getColourPrice(colour: investments[indexPath.row].colour, onPlatform: investments[indexPath.row].platform)
+        let priceRange = investments[indexPath.row].item.getColourPrice(colour: investments[indexPath.row].colour.uppercased(), onPlatform: investments[indexPath.row].platform.uppercased())
         //there shouldnt be any nil values as it gets filtered out during the adding process
         cell.currentPriceLabel.text = "Current Price: \(priceRange![0]) - \(priceRange![1])"
         
@@ -209,7 +218,7 @@ extension investmentOverview: UITableViewDelegate, UITableViewDataSource
             profitUpperBoundString = "(\(String(profitUpperBound)))"
         }
         
-        cell.profitLabel.text = "Profit: \(profitLowerBoundString) - \(profitUpperBoundString)"
+        cell.profitLabel.text = "Profit/Loss: \(profitLowerBoundString) - \(profitUpperBoundString)"
         
         cell.tag = indexPath.row
         return cell

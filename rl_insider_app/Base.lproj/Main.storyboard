@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2897" y="-449"/>
+            <point key="canvasLocation" x="2335" y="3"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2Z7-BW-f3Z">
@@ -108,7 +108,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2se-Us-ykr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1965" y="-449"/>
+            <point key="canvasLocation" x="1403" y="3"/>
         </scene>
         <!--Add New Investment-->
         <scene sceneID="nMT-VR-ji5">
@@ -334,7 +334,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lAn-0h-VI3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402.8985507246377" y="705.80357142857144"/>
+            <point key="canvasLocation" x="1403" y="1039"/>
         </scene>
         <!--Investment Overview-->
         <scene sceneID="dYp-EP-Si1">
@@ -518,6 +518,9 @@
                                     <constraint firstItem="NiB-GD-szU" firstAttribute="leading" secondItem="lY9-x9-yQU" secondAttribute="leading" constant="15" id="swI-oy-Vhh"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="p0P-jD-Dv7">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kv0-MD-xyX"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
@@ -525,6 +528,8 @@
                             <constraint firstItem="1gg-3V-2EF" firstAttribute="top" secondItem="kv0-MD-xyX" secondAttribute="top" id="01r-nq-xhD"/>
                             <constraint firstItem="1gg-3V-2EF" firstAttribute="leading" secondItem="kv0-MD-xyX" secondAttribute="leading" id="8T4-Dl-iNU"/>
                             <constraint firstItem="kv0-MD-xyX" firstAttribute="trailing" secondItem="lY9-x9-yQU" secondAttribute="trailing" id="8bF-pK-lYf"/>
+                            <constraint firstItem="p0P-jD-Dv7" firstAttribute="centerX" secondItem="O3E-o1-k89" secondAttribute="centerX" id="adt-ok-kvL"/>
+                            <constraint firstItem="p0P-jD-Dv7" firstAttribute="centerY" secondItem="O3E-o1-k89" secondAttribute="centerY" id="dg3-Ub-OZC"/>
                             <constraint firstItem="kv0-MD-xyX" firstAttribute="trailing" secondItem="1gg-3V-2EF" secondAttribute="trailing" id="eCa-zg-0Rr"/>
                             <constraint firstItem="kv0-MD-xyX" firstAttribute="bottom" secondItem="lY9-x9-yQU" secondAttribute="bottom" id="eLv-o8-TXK"/>
                             <constraint firstItem="lY9-x9-yQU" firstAttribute="leading" secondItem="kv0-MD-xyX" secondAttribute="leading" id="krE-F2-z5s"/>
@@ -545,6 +550,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="758-Ay-2xu" id="eC2-51-Sc8"/>
+                        <outlet property="mainActivityIndicator" destination="p0P-jD-Dv7" id="wMH-Vc-H1n"/>
                         <outlet property="tableView" destination="1gg-3V-2EF" id="aOt-dH-yXJ"/>
                         <outlet property="totalBackground" destination="lY9-x9-yQU" id="1HD-PY-qTH"/>
                         <outlet property="totalBarButton" destination="lDy-FB-kWW" id="jjq-x9-YjK"/>
