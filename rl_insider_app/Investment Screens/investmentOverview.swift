@@ -51,6 +51,7 @@ class investmentOverview: UIViewController {
         
         mainActivityIndicator.isHidden = false
         mainActivityIndicator.startAnimating()
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -123,7 +124,7 @@ class investmentOverview: UIViewController {
         var i = 0
         while i != groups.count
         {
-            if groups[i].itemName == investments[cellTag].item.itemName
+            if groups[i].itemName == investments[cellTag].item.itemName && groups[i].platform.uppercased() == investments[cellTag].platform.uppercased()
             {
                 groupAlreadyExists = true
                 //there is already a group, just reset it and go through the invesments to add to it
@@ -131,7 +132,7 @@ class investmentOverview: UIViewController {
                 var a = 0
                 while a != investments.count
                 {
-                    if investments[a].item.itemName == groups[i].itemName
+                    if investments[a].item.itemName == groups[i].itemName && investments[a].platform.uppercased() == groups[i].platform.uppercased()
                     {
                         groups[i].itemIDS.append(investments[a].id)
                     }
@@ -143,11 +144,11 @@ class investmentOverview: UIViewController {
         
         if groupAlreadyExists == false
         {
-            var newGroup = investmentGroup(itemName: investments[cellTag].item.itemName, itemIDS: [])
+            var newGroup = investmentGroup(itemName: investments[cellTag].item.itemName, platform: investments[cellTag].platform, itemIDS: [])
             var a = 0
             while a != investments.count
             {
-                if investments[a].item.itemName == newGroup.itemName
+                if investments[a].item.itemName == newGroup.itemName && investments[a].platform.uppercased() == newGroup.platform.uppercased()
                 {
                     newGroup.itemIDS.append(investments[a].id)
                 }
@@ -156,6 +157,7 @@ class investmentOverview: UIViewController {
             
             groups.append(newGroup)
         }
+        saveGroupData()
         
         print(groups)
         

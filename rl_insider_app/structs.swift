@@ -102,5 +102,6 @@ struct investmentItem: Codable
 struct investmentGroup: Codable
 {
     var itemName: String
+    var platform: String
     var itemIDS: [Int]
 }
