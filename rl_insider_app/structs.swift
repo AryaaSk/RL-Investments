@@ -96,4 +96,11 @@ struct investmentItem: Codable
     var quantity: Int
     var boughtFor: Int
     var platform: String
+    var id: Int
+}
+
+struct investmentGroup: Codable
+{
+    var itemName: String
+    var itemIDS: [Int]
 }

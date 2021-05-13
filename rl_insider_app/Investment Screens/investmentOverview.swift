@@ -28,6 +28,7 @@ class investmentOverview: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableViewDelay), name: NSNotification.Name("reloadItemsDelay"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteItems), name: NSNotification.Name("deleteInvestment"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(editInvestment), name: NSNotification.Name("editInvestment"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(groupInvesment), name: NSNotification.Name("groupInvestment"), object: nil)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -64,6 +65,7 @@ class investmentOverview: UIViewController {
         selectedPlatform = platform
         selectedAmount = 1
         priceBoughtFor = 100
+        selectedID = investmentID()
         self.performSegue(withIdentifier: "addNew", sender: self)
     }
     
@@ -99,8 +101,6 @@ class investmentOverview: UIViewController {
             self.tableView.endUpdates()
         }))
         self.present(alert, animated: true, completion: nil)
-        
-        print(investments)
     }
     
     @objc func editInvestment()
@@ -111,7 +111,54 @@ class investmentOverview: UIViewController {
         selectedPlatform = investments[cellTag].platform
         selectedAmount = investments[cellTag].quantity
         priceBoughtFor = investments[cellTag].boughtFor
+        selectedID = investments[cellTag].id
         self.performSegue(withIdentifier: "addNew", sender: self)
+    }
+    
+    @objc func groupInvesment()
+    {
+        print(investments[cellTag].item.itemName)
+        //first check if there is already a group
+        var groupAlreadyExists = false
+        var i = 0
+        while i != groups.count
+        {
+            if groups[i].itemName == investments[cellTag].item.itemName
+            {
+                groupAlreadyExists = true
+                //there is already a group, just reset it and go through the invesments to add to it
+                groups[i].itemIDS = []
+                var a = 0
+                while a != investments.count
+                {
+                    if investments[a].item.itemName == groups[i].itemName
+                    {
+                        groups[i].itemIDS.append(investments[a].id)
+                    }
+                    a += 1
+                }
+            }
+            i += 1
+        }
+        
+        if groupAlreadyExists == false
+        {
+            var newGroup = investmentGroup(itemName: investments[cellTag].item.itemName, itemIDS: [])
+            var a = 0
+            while a != investments.count
+            {
+                if investments[a].item.itemName == newGroup.itemName
+                {
+                    newGroup.itemIDS.append(investments[a].id)
+                }
+                a += 1
+            }
+            
+            groups.append(newGroup)
+        }
+        
+        print(groups)
+        
     }
 
     @IBAction func showTotal(_ sender: Any) {
@@ -163,6 +210,7 @@ extension investmentOverview: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! itemCell
         cell.itemNameLabel.text = "\(investments[indexPath.row].colour) \(investments[indexPath.row].item.itemName)"
         

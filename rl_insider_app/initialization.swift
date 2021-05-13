@@ -34,12 +34,14 @@ func initializeData()
             var i = 0
             while i != investments.count
             {
-                for item in items
+                var a = 0
+                while a != items.count
                 {
-                    if investments[i].item.itemName == item.itemName
+                    if investments[i].item.itemName == items[a].itemName
                     {
-                        investments[i].item = item
+                        investments[i].item = items[a]
                     }
+                    a += 1
                 }
                 i += 1
             }

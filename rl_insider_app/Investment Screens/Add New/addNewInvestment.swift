@@ -71,10 +71,7 @@ class addNewInvestment: UIViewController {
                 }
                 else
                 {
-                    print(selectedPlatform)
-                    print(priceBoughtFor)
-                    print(selectedAmount)
-                    investments.append(investmentItem(item: selectedItem!, colour: selectedColour!, quantity: selectedAmount, boughtFor: priceBoughtFor, platform: selectedPlatform))
+                    investments.append(investmentItem(item: selectedItem!, colour: selectedColour!, quantity: selectedAmount, boughtFor: priceBoughtFor, platform: selectedPlatform, id: selectedID))
                     saveInvestmentsData()
                     NotificationCenter.default.post(name: Notification.Name("reloadInvestments"), object: nil)
                     self.dismiss(animated: true, completion: nil)
@@ -103,10 +100,7 @@ class addNewInvestment: UIViewController {
                 }
                 else
                 {
-                    print(selectedPlatform)
-                    print(priceBoughtFor)
-                    print(selectedAmount)
-                    investments[cellTag] = investmentItem(item: selectedItem!, colour: selectedColour!, quantity: selectedAmount, boughtFor: priceBoughtFor, platform: selectedPlatform)
+                    investments[cellTag] = investmentItem(item: selectedItem!, colour: selectedColour!, quantity: selectedAmount, boughtFor: priceBoughtFor, platform: selectedPlatform, id: selectedID)
                     saveInvestmentsData()
                     NotificationCenter.default.post(name: Notification.Name("reloadInvestments"), object: nil)
                     self.dismiss(animated: true, completion: nil)

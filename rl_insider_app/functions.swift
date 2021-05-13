@@ -35,6 +35,32 @@ func getSavedInvestments() -> [investmentItem]
     }
 }
 
+func saveGroupData()
+{
+    let encoder = JSONEncoder()
+    if let encoded = try? encoder.encode(groups) {
+        UserDefaults.standard.set(encoded, forKey: "groups")
+    }
+    
+}
+func getSavedGroups() -> [investmentGroup]
+{
+    if let investmentData = UserDefaults.standard.object(forKey: "groups") as? Data {
+        let decoder = JSONDecoder()
+        if let loadedInvestments = try? decoder.decode([investmentGroup].self, from: investmentData) {
+            return loadedInvestments
+        }
+        else
+        {
+            return []
+        }
+    }
+    else
+    {
+        return []
+    }
+}
+
 func updatePlatform()
 {
     UserDefaults.standard.set(platform, forKey: "platform")
@@ -372,6 +398,23 @@ extension decodingitem
         }
         
     }
+}
+
+func investmentID() -> Int
+{
+    //just find the highest number and that is our id
+    var i = 0
+    var returnID = 0
+    while i != investments.count
+    {
+        if investments[i].id >= returnID
+        {
+            returnID = investments[i].id + 1
+        }
+        i += 1
+    }
+    
+    return returnID
 }
 
 extension UIView {

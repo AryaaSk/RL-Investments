@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -236,6 +237,26 @@
                                             <outlet property="amountStepper" destination="K1a-O1-oFA" id="r6q-hu-xAD"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="buttonCell" rowHeight="43.5" id="keN-fG-3jW">
+                                        <rect key="frame" x="0.0" y="267" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="keN-fG-3jW" id="KDx-D1-yjw">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Similar Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wk0-uI-SJK">
+                                                    <rect key="frame" x="132.5" y="11.5" width="149" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="linkColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Wk0-uI-SJK" firstAttribute="centerX" secondItem="KDx-D1-yjw" secondAttribute="centerX" id="GbQ-kv-gEt"/>
+                                                <constraint firstItem="Wk0-uI-SJK" firstAttribute="centerY" secondItem="KDx-D1-yjw" secondAttribute="centerY" id="qdw-NJ-k83"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -375,16 +396,29 @@
                                                             <rect key="frame" x="0.0" y="228" width="374" height="50"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpT-nl-7A8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="162" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="91.5" height="50"/>
                                                                     <color key="tintColor" systemColor="systemRedColor"/>
-                                                                    <state key="normal" image="trash" catalog="system"/>
+                                                                    <state key="normal">
+                                                                        <imageReference key="image" image="trash" catalog="system" symbolScale="large"/>
+                                                                    </state>
                                                                     <connections>
                                                                         <action selector="deleteButtonPressed:" destination="KdY-MX-a0r" eventType="touchUpInside" id="zW4-Nh-uNt"/>
                                                                     </connections>
                                                                 </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHy-v1-E3E">
+                                                                    <rect key="frame" x="141.5" y="0.0" width="91" height="50"/>
+                                                                    <state key="normal">
+                                                                        <imageReference key="image" image="plus.app" catalog="system" symbolScale="large"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="groupButtonPressed:" destination="KdY-MX-a0r" eventType="touchUpInside" id="CNt-CF-xel"/>
+                                                                    </connections>
+                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qj9-6w-Is6">
-                                                                    <rect key="frame" x="212" y="0.0" width="162" height="50"/>
-                                                                    <state key="normal" image="square.and.pencil" catalog="system"/>
+                                                                    <rect key="frame" x="282.5" y="0.0" width="91.5" height="50"/>
+                                                                    <state key="normal">
+                                                                        <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="large"/>
+                                                                    </state>
                                                                     <connections>
                                                                         <action selector="editButtonPressed:" destination="KdY-MX-a0r" eventType="touchUpInside" id="Xcu-Gk-Igv"/>
                                                                     </connections>
@@ -610,8 +644,12 @@
         <image name="arrow.up.forward" catalog="system" width="128" height="112"/>
         <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="trash" catalog="system" width="121" height="128"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

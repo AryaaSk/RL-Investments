@@ -31,6 +31,12 @@ class itemCell: UITableViewCell {
         cellTag = self.tag
         NotificationCenter.default.post(name: NSNotification.Name("deleteInvestment"), object: nil)
     }
+    
+    @IBAction func groupButtonPressed(_ sender: Any) {
+        cellTag = self.tag
+        NotificationCenter.default.post(name: NSNotification.Name("groupInvestment"), object: nil)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
