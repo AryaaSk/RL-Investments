@@ -21,6 +21,7 @@ class itemCell: UITableViewCell {
     @IBOutlet var totalNowLabel: UILabel!
     @IBOutlet var profitLabel: UILabel!
     @IBOutlet var platformIcon: UIImageView!
+    @IBOutlet var amountStepper: UIStepper!
     
     @IBAction func editButtonPressed(_ sender: Any) {
         cellTag = self.tag
@@ -30,6 +31,11 @@ class itemCell: UITableViewCell {
     @IBAction func deleteButtonPressed(_ sender: Any) {
         cellTag = self.tag
         NotificationCenter.default.post(name: NSNotification.Name("deleteInvestment"), object: nil)
+    }
+    @IBAction func stepperValueChanged(_ sender: Any) {
+        cellTag = self.tag
+        currentAmount = Int(self.amountStepper.value)
+        NotificationCenter.default.post(name: NSNotification.Name("amountChangedInvestment"), object: nil)
     }
     
     @IBAction func groupButtonPressed(_ sender: Any) {
@@ -50,6 +56,12 @@ class itemCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        setupView()
+        
+    }
+    
+    func setupView()
+    {
         self.main.layer.cornerRadius = 8
         self.main.layer.masksToBounds = true
 
@@ -62,7 +74,6 @@ class itemCell: UITableViewCell {
         self.shadowLayer.layer.shadowPath = UIBezierPath(roundedRect: self.shadowLayer.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
         self.shadowLayer.layer.shouldRasterize = true
         self.shadowLayer.layer.rasterizationScale = UIScreen.main.scale
-        
     }
 
 }
@@ -76,9 +87,9 @@ class ShadowView: UIView {
 
     private func setupShadow() {
         self.layer.cornerRadius = 8
-        self.layer.shadowOffset = CGSize(width: 0, height: 3)
-        self.layer.shadowRadius = 3
-        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOffset = CGSize(width: 0, height: 0)
+        self.layer.shadowRadius = 4
+        self.layer.shadowOpacity = 0.23
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale

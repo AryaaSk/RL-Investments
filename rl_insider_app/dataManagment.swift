@@ -14,7 +14,10 @@ var groups: [investmentGroup] = getSavedGroups()
 var items: [decodingitem] = []
 var filteredData: [decodingitem] = []
 
-//MARK:- ADD NEW:
+//MARK:- Investments and ADD NEW:
+
+var investmentFilteredData: [investmentItem] = []
+
 //Select Item:
 var selectedItem: decodingitem? = nil
 var selectedColour: String? = nil
@@ -25,6 +28,9 @@ var selectedID = 0
 
 //Delete Item
 var cellTag = 0
+
+//Change Amount
+var currentAmount = 0
 
 //Edit Item
 var editingMode = false

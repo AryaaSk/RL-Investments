@@ -11,6 +11,7 @@ import UIKit
 //Userdefaults
 func saveInvestmentsData()
 {
+    investmentFilteredData = investments
     let encoder = JSONEncoder()
     if let encoded = try? encoder.encode(investments) {
         UserDefaults.standard.set(encoded, forKey: "Investments")

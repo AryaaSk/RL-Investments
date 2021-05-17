@@ -365,7 +365,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1gg-3V-2EF">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1gg-3V-2EF">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                 <prototypes>
@@ -393,10 +393,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="ZNG-bk-kMB">
-                                                            <rect key="frame" x="0.0" y="228" width="374" height="50"/>
+                                                            <rect key="frame" x="0.0" y="236" width="374" height="32"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpT-nl-7A8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="91.5" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="91.5" height="32"/>
                                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                                     <state key="normal">
                                                                         <imageReference key="image" image="trash" catalog="system" symbolScale="large"/>
@@ -405,17 +405,14 @@
                                                                         <action selector="deleteButtonPressed:" destination="KdY-MX-a0r" eventType="touchUpInside" id="zW4-Nh-uNt"/>
                                                                     </connections>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHy-v1-E3E">
-                                                                    <rect key="frame" x="141.5" y="0.0" width="91" height="50"/>
-                                                                    <state key="normal">
-                                                                        <imageReference key="image" image="plus.app" catalog="system" symbolScale="large"/>
-                                                                    </state>
+                                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="hed-1d-KJs">
+                                                                    <rect key="frame" x="141.5" y="0.0" width="91" height="32"/>
                                                                     <connections>
-                                                                        <action selector="groupButtonPressed:" destination="KdY-MX-a0r" eventType="touchUpInside" id="CNt-CF-xel"/>
+                                                                        <action selector="stepperValueChanged:" destination="KdY-MX-a0r" eventType="valueChanged" id="QIC-4s-ny0"/>
                                                                     </connections>
-                                                                </button>
+                                                                </stepper>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qj9-6w-Is6">
-                                                                    <rect key="frame" x="282.5" y="0.0" width="91.5" height="50"/>
+                                                                    <rect key="frame" x="282.5" y="0.0" width="91.5" height="32"/>
                                                                     <state key="normal">
                                                                         <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="large"/>
                                                                     </state>
@@ -425,32 +422,33 @@
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="IH6-WM-HfX"/>
+                                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="IH6-WM-HfX"/>
+                                                                <constraint firstItem="hed-1d-KJs" firstAttribute="centerY" secondItem="ZNG-bk-kMB" secondAttribute="centerY" id="MWk-80-wqH"/>
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="m02-YM-Dnq">
-                                                            <rect key="frame" x="20" y="65" width="334" height="153"/>
+                                                            <rect key="frame" x="20" y="65" width="334" height="151"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bought 5 for 1500 each, 7500 total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXH-Lb-siS">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="265.5" height="38.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="265.5" height="38"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Price: 2000 - 2200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jst-SS-oYy">
-                                                                    <rect key="frame" x="0.0" y="38.5" width="207" height="38"/>
+                                                                    <rect key="frame" x="0.0" y="38" width="207" height="37.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total if sold now: 10000 - 11000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuz-LD-IZW">
-                                                                    <rect key="frame" x="0.0" y="76.5" width="242.5" height="38.5"/>
+                                                                    <rect key="frame" x="0.0" y="75.5" width="242.5" height="38"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profit: 2500 - 3500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijH-u9-XrX">
-                                                                    <rect key="frame" x="0.0" y="115" width="152" height="38"/>
+                                                                    <rect key="frame" x="0.0" y="113.5" width="152" height="37.5"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -470,9 +468,9 @@
                                                         <constraint firstItem="oZc-V4-HTL" firstAttribute="leading" secondItem="9P0-Rk-ee8" secondAttribute="leading" constant="20" id="0CW-wg-GhZ"/>
                                                         <constraint firstAttribute="trailing" secondItem="m02-YM-Dnq" secondAttribute="trailing" constant="20" id="4k6-SW-yNB"/>
                                                         <constraint firstItem="oZc-V4-HTL" firstAttribute="top" secondItem="9P0-Rk-ee8" secondAttribute="top" constant="20" id="8yW-1K-rM8"/>
-                                                        <constraint firstAttribute="bottom" secondItem="ZNG-bk-kMB" secondAttribute="bottom" id="Alz-et-CD1"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ZNG-bk-kMB" secondAttribute="bottom" constant="10" id="Alz-et-CD1"/>
                                                         <constraint firstItem="hQZ-Mv-uop" firstAttribute="leading" secondItem="oZc-V4-HTL" secondAttribute="trailing" constant="10" id="XVk-eb-R1z"/>
-                                                        <constraint firstItem="ZNG-bk-kMB" firstAttribute="top" secondItem="m02-YM-Dnq" secondAttribute="bottom" constant="10" id="a4d-yM-MY2"/>
+                                                        <constraint firstItem="ZNG-bk-kMB" firstAttribute="top" secondItem="m02-YM-Dnq" secondAttribute="bottom" constant="20" id="a4d-yM-MY2"/>
                                                         <constraint firstItem="ZNG-bk-kMB" firstAttribute="leading" secondItem="9P0-Rk-ee8" secondAttribute="leading" id="cSK-M2-slp"/>
                                                         <constraint firstAttribute="trailing" secondItem="hQZ-Mv-uop" secondAttribute="trailing" constant="20" id="hRu-0L-OS3"/>
                                                         <constraint firstItem="m02-YM-Dnq" firstAttribute="top" secondItem="hQZ-Mv-uop" secondAttribute="bottom" constant="5" id="jfg-kP-vjc"/>
@@ -497,6 +495,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                                         <connections>
+                                            <outlet property="amountStepper" destination="hed-1d-KJs" id="IU8-hv-19w"/>
                                             <outlet property="currentPriceLabel" destination="Jst-SS-oYy" id="sdn-yM-xk2"/>
                                             <outlet property="deleteButton" destination="xpT-nl-7A8" id="ZDC-EY-xRr"/>
                                             <outlet property="editButton" destination="Qj9-6w-Is6" id="1mt-en-MuX"/>
@@ -559,9 +558,9 @@
                         <viewLayoutGuide key="safeArea" id="kv0-MD-xyX"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1gg-3V-2EF" firstAttribute="top" secondItem="kv0-MD-xyX" secondAttribute="top" id="01r-nq-xhD"/>
                             <constraint firstItem="1gg-3V-2EF" firstAttribute="leading" secondItem="kv0-MD-xyX" secondAttribute="leading" id="8T4-Dl-iNU"/>
                             <constraint firstItem="kv0-MD-xyX" firstAttribute="trailing" secondItem="lY9-x9-yQU" secondAttribute="trailing" id="8bF-pK-lYf"/>
+                            <constraint firstItem="1gg-3V-2EF" firstAttribute="top" secondItem="kv0-MD-xyX" secondAttribute="top" id="ATl-nH-g9O"/>
                             <constraint firstItem="p0P-jD-Dv7" firstAttribute="centerX" secondItem="O3E-o1-k89" secondAttribute="centerX" id="adt-ok-kvL"/>
                             <constraint firstItem="p0P-jD-Dv7" firstAttribute="centerY" secondItem="O3E-o1-k89" secondAttribute="centerY" id="dg3-Ub-OZC"/>
                             <constraint firstItem="kv0-MD-xyX" firstAttribute="trailing" secondItem="1gg-3V-2EF" secondAttribute="trailing" id="eCa-zg-0Rr"/>
@@ -585,6 +584,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="758-Ay-2xu" id="eC2-51-Sc8"/>
                         <outlet property="mainActivityIndicator" destination="p0P-jD-Dv7" id="wMH-Vc-H1n"/>
+                        <outlet property="searchBar" destination="Wnt-6a-CVR" id="QNn-st-b3A"/>
                         <outlet property="tableView" destination="1gg-3V-2EF" id="aOt-dH-yXJ"/>
                         <outlet property="totalBackground" destination="lY9-x9-yQU" id="1HD-PY-qTH"/>
                         <outlet property="totalBarButton" destination="lDy-FB-kWW" id="jjq-x9-YjK"/>
@@ -595,6 +595,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y51-dw-RAd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" id="Wnt-6a-CVR">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
             </objects>
             <point key="canvasLocation" x="-1675.3623188405797" y="1038.6160714285713"/>
         </scene>
@@ -644,7 +649,6 @@
         <image name="arrow.up.forward" catalog="system" width="128" height="112"/>
         <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="linkColor">
