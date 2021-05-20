@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Charts
 
 class investmentOverview: UIViewController {
 
@@ -97,6 +98,41 @@ class investmentOverview: UIViewController {
     @objc func deleteItems()
     {
         let alert = UIAlertController(title: "Are you sure you want to delete this investment", message: "You will have to create it again", preferredStyle: .alert)
+        
+        /*
+        let margin:CGFloat = 0
+        let rect = CGRect(x: margin, y: margin, width: alert.view.bounds.size.width - margin * 4.0, height: 50)
+        let chart = LineChartView(frame: rect)
+        chart.backgroundColor = .systemTeal
+        chart.xAxis.labelTextColor = .clear
+        chart.rightAxis.labelTextColor = .clear
+        chart.leftAxis.labelTextColor = .clear
+        chart.borderLineWidth = 0
+        let pointList = [xy(x: 0, y: 1100), xy(x: 1, y: 1000), xy(x: 2, y: 1200), xy(x: 3, y: 900), xy(x: 4, y: 900), xy(x: 5, y: 1000), xy(x: 6, y: 1300)]
+        var lineChartPoints = [ChartDataEntry]()
+        for point in pointList
+        {
+            lineChartPoints.append(ChartDataEntry(x: Double(point.x), y: Double(point.y)))
+        }
+        let line = LineChartDataSet(entries: lineChartPoints, label: "Price")
+        line.colors = [NSUIColor.blue]
+        line.circleHoleRadius = 0
+        line.circleRadius = 2
+        line.circleColors = [NSUIColor.blue]
+        let graphData = LineChartData()
+        graphData.addDataSet(line)
+        chart.data = graphData
+        chart.chartDescription?.text = "Item Price"
+        
+        struct xy
+        {
+            let x: Int
+            let y: Int
+        }
+        
+        alert.view.addSubview(chart)
+        */
+        
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { delete in
             self.tableView.beginUpdates()

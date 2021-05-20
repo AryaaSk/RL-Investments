@@ -180,7 +180,22 @@ def parseprice(unparsed):
             i += 1
 
         tempList.append("}")
+        historyList = List
         List = tempList
+
+        i = 0
+        while historyList[i] != "h":
+            del historyList[i]
+        del historyList[0]
+        del historyList[0]
+        del historyList[0]
+        tempList = []
+        i = 0
+        while historyList[i] != "}":
+            tempList.append(historyList[i])
+            i += 1
+        tempList.append("}")
+        historyList = tempList
 
         #still need to convert lists into price range lists
 
@@ -311,7 +326,6 @@ def parseprice(unparsed):
                 del List[0]
         else:
                 xboxPrices = None
-
         
         return [pcPrices, ps4Prices, switchPrices, xboxPrices]
 

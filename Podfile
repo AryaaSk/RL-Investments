@@ -8,5 +8,6 @@ target 'rl_insider_app' do
   # Pods for rl_insider_app
 
 pod 'Firebase/Database'
+pod 'Charts'
 
 end
