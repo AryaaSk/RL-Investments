@@ -17,6 +17,7 @@
 		E404EADA26386ABB000E4C5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E404EAD926386ABB000E4C5D /* GoogleService-Info.plist */; };
 		E465D5B32647A9C0003A48C7 /* itemSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465D5B22647A9C0003A48C7 /* itemSelectionCell.swift */; };
 		E465D5B52647B301003A48C7 /* colourPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465D5B42647B301003A48C7 /* colourPickerCell.swift */; };
+		E494ABC0265B666F005ADBE6 /* rlInsiderChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494ABBF265B666F005ADBE6 /* rlInsiderChart.swift */; };
 		E4AC79B826482CED00C8F7CC /* itemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC79B726482CED00C8F7CC /* itemCell.swift */; };
 		E4AC79BC26483BEB00C8F7CC /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC79BB26483BEB00C8F7CC /* functions.swift */; };
 		E4AC79BE26483C0200C8F7CC /* initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC79BD26483C0200C8F7CC /* initialization.swift */; };
@@ -46,6 +47,7 @@
 		E4380B3F2643AB5400F0F1D6 /* rl_insider_app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = rl_insider_app.entitlements; sourceTree = "<group>"; };
 		E465D5B22647A9C0003A48C7 /* itemSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemSelectionCell.swift; sourceTree = "<group>"; };
 		E465D5B42647B301003A48C7 /* colourPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colourPickerCell.swift; sourceTree = "<group>"; };
+		E494ABBF265B666F005ADBE6 /* rlInsiderChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rlInsiderChart.swift; sourceTree = "<group>"; };
 		E4AC79B726482CED00C8F7CC /* itemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemCell.swift; sourceTree = "<group>"; };
 		E4AC79BB26483BEB00C8F7CC /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
 		E4AC79BD26483C0200C8F7CC /* initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = initialization.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				E4C7D81326472BA1003E5825 /* investmentOverview.swift */,
+				E494ABBF265B666F005ADBE6 /* rlInsiderChart.swift */,
 				E4AC79B62648273A00C8F7CC /* Cells */,
 				E4AC79B52648272C00C8F7CC /* Add New */,
 			);
@@ -287,6 +290,7 @@
 				E4C7D81426472BA1003E5825 /* investmentOverview.swift in Sources */,
 				E404EAC92637C8D7000E4C5D /* ViewController.swift in Sources */,
 				E404EAC52637C8D7000E4C5D /* AppDelegate.swift in Sources */,
+				E494ABC0265B666F005ADBE6 /* rlInsiderChart.swift in Sources */,
 				E4AC79E22648F1F900C8F7CC /* boughtForCell.swift in Sources */,
 				E4C7D81826472C19003E5825 /* addNewItemSelection.swift in Sources */,
 				E4AC79B826482CED00C8F7CC /* itemCell.swift in Sources */,

@@ -39,6 +39,7 @@ class unparsedPrice:
 class Item:
     itemName: str
     itemPriceRange: str
+    itemUrlName: str
     
 @dataclass
 class price:
@@ -333,6 +334,7 @@ def getItemsinSection(section):
     itemNames = []
     pricesUnparsed = []
     prices = []
+    urls = []
     tempSoup = BeautifulSoup(section, 'html.parser')
     itemRows= []
     for text in tempSoup.find_all("tr", class_="itemRow"):
@@ -340,9 +342,35 @@ def getItemsinSection(section):
 
     #now loop through item rows and get the name and price, check for "no hover" and normal
     for itemRow in itemRows:
-            
+
         rowSoup = BeautifulSoup(itemRow, 'html.parser')
         unparsedPriceStrings = unparsedPrice("", "", "", "", "", "", "", "", "", "", "", "", "", "") #default, black, white, grey, crimson, pink, cobalt, sky blue, burnt sienna, saffron, lime, forest green, orange, purple
+
+        #need to find the data-itemurl
+        urlString = []
+        itemRowList = convert_to_list(itemRow)
+        i = 0
+        while itemRowList[i] + itemRowList[i + 1] + itemRowList[i + 2]  != "url":
+                del itemRowList[i]
+                if len(itemRowList) - 3 < i:
+                        break
+        i= 0
+        if len(itemRowList) > 5:
+                while itemRowList[i] + itemRowList[i + 1] + itemRowList[i + 2] + itemRowList[i + 3] + itemRowList[i + 4] + itemRowList[i + 5] != "sprite" and len(itemRowList) > 5:
+                        urlString.append(itemRowList[i])
+                        if len(itemRowList) - 5 < i:
+                                break
+                        i += 1
+
+                #now we just delete the last 7 letters and the first 5
+                for i in range(7):
+                        del urlString[-1]
+                
+                for i in range(5):
+                        del urlString[0]
+                
+        urls.append(convert_to_string(urlString))
+                        
         for text in rowSoup.find_all("div", class_="fnl"):
             itemNames.append(text.get_text())
         
@@ -430,7 +458,6 @@ def getItemsinSection(section):
                  unparsedPriceStrings.purplePrice = str(text)
         
         pricesUnparsed.append(unparsedPriceStrings)
-
     #parse prices
     i = 0
     while i != len(pricesUnparsed):
@@ -521,12 +548,12 @@ def getItemsinSection(section):
             
             prices.append(newPrice)
             i += 1
-
+            
     #itemnames and prices should be the same length
     tempItems = []
     i = 0
     while i != len(itemNames):
-        tempItems.append(Item(itemNames[i] + extraWords, prices[i]))
+        tempItems.append(Item(itemNames[i] + extraWords, prices[i], urls[i]))
         i += 1
 
     return tempItems

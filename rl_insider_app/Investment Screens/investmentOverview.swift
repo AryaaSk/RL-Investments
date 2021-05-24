@@ -33,6 +33,7 @@ class investmentOverview: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(editInvestment), name: NSNotification.Name("editInvestment"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(groupInvesment), name: NSNotification.Name("groupInvestment"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(amountChangedInvestment), name: NSNotification.Name("amountChangedInvestment"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showRLInsiderChart), name: NSNotification.Name("showRLInsiderChart"), object: nil)
         
         
         tableView.delegate = self
@@ -165,6 +166,11 @@ class investmentOverview: UIViewController {
         priceBoughtFor = investments[cellTag].boughtFor
         selectedID = investments[cellTag].id
         self.performSegue(withIdentifier: "addNew", sender: self)
+    }
+    
+    @objc func showRLInsiderChart()
+    {
+        self.performSegue(withIdentifier: "rlInsiderChart", sender: self)
     }
     
     @objc func amountChangedInvestment()

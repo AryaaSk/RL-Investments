@@ -15,6 +15,7 @@ struct decodingitem: Codable
 {
     let itemName: String
     let itemPriceRange: prices
+    let itemUrlName: String
 }
 struct prices: Codable
 {

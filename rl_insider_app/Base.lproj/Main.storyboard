@@ -392,11 +392,11 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="ZNG-bk-kMB">
-                                                            <rect key="frame" x="0.0" y="236" width="374" height="32"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ZNG-bk-kMB">
+                                                            <rect key="frame" x="20" y="236" width="344" height="32"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xpT-nl-7A8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="91.5" height="32"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="19" height="32"/>
                                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                                     <state key="normal">
                                                                         <imageReference key="image" image="trash" catalog="system" symbolScale="large"/>
@@ -405,21 +405,30 @@
                                                                         <action selector="deleteButtonPressed:" destination="KdY-MX-a0r" eventType="touchUpInside" id="zW4-Nh-uNt"/>
                                                                     </connections>
                                                                 </button>
-                                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="hed-1d-KJs">
-                                                                    <rect key="frame" x="141.5" y="0.0" width="91" height="32"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3rf-p8-HWK">
+                                                                    <rect key="frame" x="74.5" y="0.0" width="35" height="32"/>
+                                                                    <state key="normal" title="   ">
+                                                                        <imageReference key="image" image="line.diagonal.arrow" catalog="system" symbolScale="large"/>
+                                                                    </state>
                                                                     <connections>
-                                                                        <action selector="stepperValueChanged:" destination="KdY-MX-a0r" eventType="valueChanged" id="QIC-4s-ny0"/>
+                                                                        <action selector="rlInsiderChart:" destination="KdY-MX-a0r" eventType="touchUpInside" id="vNc-og-FGe"/>
                                                                     </connections>
-                                                                </stepper>
+                                                                </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qj9-6w-Is6">
-                                                                    <rect key="frame" x="282.5" y="0.0" width="91.5" height="32"/>
-                                                                    <state key="normal">
+                                                                    <rect key="frame" x="165.5" y="0.0" width="29" height="32"/>
+                                                                    <state key="normal" title="  ">
                                                                         <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="large"/>
                                                                     </state>
                                                                     <connections>
                                                                         <action selector="editButtonPressed:" destination="KdY-MX-a0r" eventType="touchUpInside" id="Xcu-Gk-Igv"/>
                                                                     </connections>
                                                                 </button>
+                                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="hed-1d-KJs">
+                                                                    <rect key="frame" x="250" y="0.0" width="94" height="32"/>
+                                                                    <connections>
+                                                                        <action selector="stepperValueChanged:" destination="KdY-MX-a0r" eventType="valueChanged" id="QIC-4s-ny0"/>
+                                                                    </connections>
+                                                                </stepper>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="IH6-WM-HfX"/>
@@ -471,10 +480,10 @@
                                                         <constraint firstAttribute="bottom" secondItem="ZNG-bk-kMB" secondAttribute="bottom" constant="10" id="Alz-et-CD1"/>
                                                         <constraint firstItem="hQZ-Mv-uop" firstAttribute="leading" secondItem="oZc-V4-HTL" secondAttribute="trailing" constant="10" id="XVk-eb-R1z"/>
                                                         <constraint firstItem="ZNG-bk-kMB" firstAttribute="top" secondItem="m02-YM-Dnq" secondAttribute="bottom" constant="20" id="a4d-yM-MY2"/>
-                                                        <constraint firstItem="ZNG-bk-kMB" firstAttribute="leading" secondItem="9P0-Rk-ee8" secondAttribute="leading" id="cSK-M2-slp"/>
+                                                        <constraint firstItem="ZNG-bk-kMB" firstAttribute="leading" secondItem="9P0-Rk-ee8" secondAttribute="leading" constant="20" id="cSK-M2-slp"/>
                                                         <constraint firstAttribute="trailing" secondItem="hQZ-Mv-uop" secondAttribute="trailing" constant="20" id="hRu-0L-OS3"/>
                                                         <constraint firstItem="m02-YM-Dnq" firstAttribute="top" secondItem="hQZ-Mv-uop" secondAttribute="bottom" constant="5" id="jfg-kP-vjc"/>
-                                                        <constraint firstAttribute="trailing" secondItem="ZNG-bk-kMB" secondAttribute="trailing" id="nP0-Ts-KEW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="ZNG-bk-kMB" secondAttribute="trailing" constant="10" id="nP0-Ts-KEW"/>
                                                         <constraint firstItem="hQZ-Mv-uop" firstAttribute="top" secondItem="9P0-Rk-ee8" secondAttribute="top" constant="10" id="vYV-1g-QHm"/>
                                                         <constraint firstItem="m02-YM-Dnq" firstAttribute="leading" secondItem="9P0-Rk-ee8" secondAttribute="leading" constant="20" id="vcN-Up-O5U"/>
                                                         <constraint firstItem="m02-YM-Dnq" firstAttribute="top" secondItem="oZc-V4-HTL" secondAttribute="bottom" constant="5" id="z8F-XJ-E5y"/>
@@ -592,6 +601,7 @@
                         <outlet property="totalProfitLabel" destination="MpQ-h9-I2O" id="W0H-mN-xO3"/>
                         <outlet property="totalSpentLabel" destination="cXD-xa-Tis" id="laU-Ht-X4g"/>
                         <segue destination="gkQ-6q-pPX" kind="show" identifier="addNew" id="vOO-Ji-bvk"/>
+                        <segue destination="m8y-TA-OmQ" kind="show" identifier="rlInsiderChart" id="15K-ug-TM2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y51-dw-RAd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -602,6 +612,41 @@
                 </searchBar>
             </objects>
             <point key="canvasLocation" x="-1675.3623188405797" y="1038.6160714285713"/>
+        </scene>
+        <!--Rl Insider Chart-->
+        <scene sceneID="d7j-La-5n7">
+            <objects>
+                <viewController id="m8y-TA-OmQ" customClass="rlInsiderChart" customModule="rl_insider_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qva-NG-S9i">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oH8-iJ-4cS">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vrD-Dc-GqV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oH8-iJ-4cS" firstAttribute="leading" secondItem="vrD-Dc-GqV" secondAttribute="leading" id="EGV-bb-c4f"/>
+                            <constraint firstItem="vrD-Dc-GqV" firstAttribute="trailing" secondItem="oH8-iJ-4cS" secondAttribute="trailing" id="G5J-63-Ipi"/>
+                            <constraint firstItem="vrD-Dc-GqV" firstAttribute="bottom" secondItem="oH8-iJ-4cS" secondAttribute="bottom" id="sca-7V-y5P"/>
+                            <constraint firstItem="oH8-iJ-4cS" firstAttribute="top" secondItem="vrD-Dc-GqV" secondAttribute="top" id="tcb-Jy-sbK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="ORM-TE-3wE"/>
+                    <connections>
+                        <outlet property="webView" destination="oH8-iJ-4cS" id="Hda-ml-OSF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WQt-fI-p2H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1675" y="1712"/>
         </scene>
         <!--Investments-->
         <scene sceneID="0hK-QY-SHu">
@@ -648,6 +693,7 @@
         <image name="PC Icon" width="200" height="200"/>
         <image name="arrow.up.forward" catalog="system" width="128" height="112"/>
         <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
+        <image name="line.diagonal.arrow" catalog="system" width="128" height="113"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="trash" catalog="system" width="121" height="128"/>

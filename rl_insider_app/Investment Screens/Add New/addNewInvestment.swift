@@ -61,6 +61,10 @@ class addNewInvestment: UIViewController {
             {
                 self.present(cannotProceedAlert(message: "You have not selected a Colour"), animated: true, completion: nil)
             }
+            else if (tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! boughtForCell).textLabel?.text == ""
+            {
+                self.present(cannotProceedAlert(message: "You have not selected a Price Bought for"), animated: true, completion: nil)
+            }
             else
             {
                 //also need to check whether that item can be painted or not but will get to that later
@@ -88,9 +92,9 @@ class addNewInvestment: UIViewController {
             {
                 self.present(cannotProceedAlert(message: "You have not selected a Colour"), animated: true, completion: nil)
             }
-            else if selectedAmount < 1
+            else if (tableView.cellForRow(at: IndexPath(row: 0, section: 2)) as! boughtForCell).textLabel?.text == ""
             {
-                self.present(cannotProceedAlert(message: ""), animated: true, completion: nil)
+                self.present(cannotProceedAlert(message: "You have not selected a Price Bought for"), animated: true, completion: nil)
             }
             else
             {

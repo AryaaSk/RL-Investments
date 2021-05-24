@@ -38,6 +38,11 @@ class itemCell: UITableViewCell {
         NotificationCenter.default.post(name: NSNotification.Name("amountChangedInvestment"), object: nil)
     }
     
+    @IBAction func rlInsiderChart(_ sender: Any) {
+        cellTag = self.tag
+        NotificationCenter.default.post(name: NSNotification.Name("showRLInsiderChart"), object: nil)
+    }
+    
     @IBAction func groupButtonPressed(_ sender: Any) {
         cellTag = self.tag
         NotificationCenter.default.post(name: NSNotification.Name("groupInvestment"), object: nil)

@@ -53,7 +53,6 @@ class ViewController: UIViewController {
         filteredData = items
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name("reloadItems"), object: nil)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +73,8 @@ class ViewController: UIViewController {
         {
             segmentedControl.selectedSegmentIndex = 3
         }
+        
+        filteredData = items
     }
     
     @objc func reloadTableView()
