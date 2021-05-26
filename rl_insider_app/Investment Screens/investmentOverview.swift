@@ -68,6 +68,21 @@ class investmentOverview: UIViewController {
         totalBackground.addBorder(.top, color: .lightGray, thickness: 0.4)
     }
     
+    func updateFilteredInvestments()
+    {
+        for investment in investments
+        {
+            if investment.item.itemName.uppercased().contains(self.searchBar.text!.uppercased())
+            {
+                investmentFilteredData.append(investment)
+            }
+        }
+        if self.searchBar.text == ""
+        {
+            investmentFilteredData = investments
+        }
+    }
+    
     @IBAction func addNewButton(_ sender: Any) {
         editingMode = false
         selectedItem = nil
@@ -100,58 +115,52 @@ class investmentOverview: UIViewController {
     {
         let alert = UIAlertController(title: "Are you sure you want to delete this investment", message: "You will have to create it again", preferredStyle: .alert)
         
-        /*
-        let margin:CGFloat = 0
-        let rect = CGRect(x: margin, y: margin, width: alert.view.bounds.size.width - margin * 4.0, height: 50)
-        let chart = LineChartView(frame: rect)
-        chart.backgroundColor = .systemTeal
-        chart.xAxis.labelTextColor = .clear
-        chart.rightAxis.labelTextColor = .clear
-        chart.leftAxis.labelTextColor = .clear
-        chart.borderLineWidth = 0
-        let pointList = [xy(x: 0, y: 1100), xy(x: 1, y: 1000), xy(x: 2, y: 1200), xy(x: 3, y: 900), xy(x: 4, y: 900), xy(x: 5, y: 1000), xy(x: 6, y: 1300)]
-        var lineChartPoints = [ChartDataEntry]()
-        for point in pointList
-        {
-            lineChartPoints.append(ChartDataEntry(x: Double(point.x), y: Double(point.y)))
-        }
-        let line = LineChartDataSet(entries: lineChartPoints, label: "Price")
-        line.colors = [NSUIColor.blue]
-        line.circleHoleRadius = 0
-        line.circleRadius = 2
-        line.circleColors = [NSUIColor.blue]
-        let graphData = LineChartData()
-        graphData.addDataSet(line)
-        chart.data = graphData
-        chart.chartDescription?.text = "Item Price"
-        
-        struct xy
-        {
-            let x: Int
-            let y: Int
-        }
-        
-        alert.view.addSubview(chart)
-        */
-        
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { delete in
-            self.tableView.beginUpdates()
             
-            self.tableView.deleteRows(at: [IndexPath(row: cellTag, section: 0)], with: .automatic)
+            //cell tag is the position of the item in investments, but we need the position in investmentsfiltereddata
+            
             if cellTag == investments.count
             {
-                investments.remove(at: cellTag - 1)
+                cellTag -= 1
+            }
+            
+            var filteredCellTag = 0
+            var i = 0
+            while i != investmentFilteredData.count
+            {
+                if investmentFilteredData[i].id == investments[cellTag].id
+                {
+                    filteredCellTag = i
+                }
+                i += 1
+            }
+            
+            investmentFilteredData.remove(at: filteredCellTag)
+            
+            if self.searchBar.text == "" || self.searchBar.text == " "
+            {
+                investments.remove(at: cellTag)
+                saveInvestmentsData()
+                self.tableView.deleteRows(at: [IndexPath(row: filteredCellTag, section: 0)], with: .automatic)
+            }
+            else if investmentFilteredData.count == 1
+            {
+                investments.remove(at: cellTag)
+                saveInvestmentsData()
+                self.tableView.deleteRows(at: [IndexPath(row: filteredCellTag, section: 0)], with: .automatic)
             }
             else
             {
                 investments.remove(at: cellTag)
+                saveInvestmentsData()
+                self.searchBar.text = ""
+                self.tableView.reloadData()
             }
-            saveInvestmentsData()
+            
             
             NotificationCenter.default.post(name: NSNotification.Name("reloadItemsDelay"), object: nil)
             
-            self.tableView.endUpdates()
         }))
         self.present(alert, animated: true, completion: nil)
     }
