@@ -63,6 +63,11 @@ class investmentOverview: UIViewController {
         searchBar.placeholder = "Search"
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        tableView.reloadData()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         totalBackground.addBorder(.top, color: .lightGray, thickness: 0.4)
@@ -303,21 +308,41 @@ extension investmentOverview: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! itemCell
         cell.itemNameLabel.text = "\(investmentFilteredData[indexPath.row].colour) \(investmentFilteredData[indexPath.row].item.itemName)"
         
+        var lightDark = "light"
+        
+        if self.traitCollection.userInterfaceStyle == .dark
+        {
+            lightDark = "Light"
+        }
+        else
+        {
+            lightDark = "Dark"
+        }
+        
+        if self.traitCollection.userInterfaceStyle == .dark
+        {
+            cell.main.backgroundColor = .systemGray6
+        }
+        else
+        {
+            cell.main.backgroundColor = .systemBackground
+        }
+        
         if investmentFilteredData[indexPath.row].platform.uppercased() == "PC"
         {
-            cell.platformIcon.image = UIImage(named: "PC Icon")
+            cell.platformIcon.image = UIImage(named: "PC Icon \(lightDark)")
         }
         else if investmentFilteredData[indexPath.row].platform.uppercased() == "PS4"
         {
-            cell.platformIcon.image = UIImage(named: "PS4 Icon")
+            cell.platformIcon.image = UIImage(named: "PS4 Icon \(lightDark)")
         }
         else if investmentFilteredData[indexPath.row].platform.uppercased() == "SWITCH"
         {
-            cell.platformIcon.image = UIImage(named: "Switch Icon")
+            cell.platformIcon.image = UIImage(named: "Switch Icon \(lightDark)")
         }
         else if investmentFilteredData[indexPath.row].platform.uppercased() == "XBOX"
         {
-            cell.platformIcon.image = UIImage(named: "Xbox Icon")
+            cell.platformIcon.image = UIImage(named: "Xbox Icon \(lightDark)")
         }
         else
         {
