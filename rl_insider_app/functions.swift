@@ -418,6 +418,12 @@ func investmentID() -> Int
     return returnID
 }
 
+func updateXPlatforms()
+{
+    UserDefaults.standard.setValue(xPlatData[0], forKey: "platform1")
+    UserDefaults.standard.setValue(xPlatData[1], forKey: "platform2")
+}
+
 extension UIView {
     func addBorder(_ edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
         let subview = UIView()

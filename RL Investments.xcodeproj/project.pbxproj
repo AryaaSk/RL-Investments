@@ -17,6 +17,10 @@
 		E404EADA26386ABB000E4C5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E404EAD926386ABB000E4C5D /* GoogleService-Info.plist */; };
 		E465D5B32647A9C0003A48C7 /* itemSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465D5B22647A9C0003A48C7 /* itemSelectionCell.swift */; };
 		E465D5B52647B301003A48C7 /* colourPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465D5B42647B301003A48C7 /* colourPickerCell.swift */; };
+		E46AA5102667456300CD4FA2 /* crossPlatformStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E46AA50F2667456300CD4FA2 /* crossPlatformStoryboard.storyboard */; };
+		E46AA512266747FF00CD4FA2 /* xPlatMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46AA511266747FF00CD4FA2 /* xPlatMain.swift */; };
+		E46AA5142667489300CD4FA2 /* xPlatSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46AA5132667489300CD4FA2 /* xPlatSettings.swift */; };
+		E46AA51926674A7200CD4FA2 /* xPlatformSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46AA51826674A7200CD4FA2 /* xPlatformSelection.swift */; };
 		E494ABC0265B666F005ADBE6 /* rlInsiderChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E494ABBF265B666F005ADBE6 /* rlInsiderChart.swift */; };
 		E4AC79B826482CED00C8F7CC /* itemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC79B726482CED00C8F7CC /* itemCell.swift */; };
 		E4AC79BC26483BEB00C8F7CC /* functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AC79BB26483BEB00C8F7CC /* functions.swift */; };
@@ -47,6 +51,10 @@
 		E4380B3F2643AB5400F0F1D6 /* rl_insider_app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = rl_insider_app.entitlements; sourceTree = "<group>"; };
 		E465D5B22647A9C0003A48C7 /* itemSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemSelectionCell.swift; sourceTree = "<group>"; };
 		E465D5B42647B301003A48C7 /* colourPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colourPickerCell.swift; sourceTree = "<group>"; };
+		E46AA50F2667456300CD4FA2 /* crossPlatformStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = crossPlatformStoryboard.storyboard; sourceTree = "<group>"; };
+		E46AA511266747FF00CD4FA2 /* xPlatMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xPlatMain.swift; sourceTree = "<group>"; };
+		E46AA5132667489300CD4FA2 /* xPlatSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xPlatSettings.swift; sourceTree = "<group>"; };
+		E46AA51826674A7200CD4FA2 /* xPlatformSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xPlatformSelection.swift; sourceTree = "<group>"; };
 		E494ABBF265B666F005ADBE6 /* rlInsiderChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rlInsiderChart.swift; sourceTree = "<group>"; };
 		E4AC79B726482CED00C8F7CC /* itemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemCell.swift; sourceTree = "<group>"; };
 		E4AC79BB26483BEB00C8F7CC /* functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = functions.swift; sourceTree = "<group>"; };
@@ -116,7 +124,8 @@
 				E404EAC62637C8D7000E4C5D /* SceneDelegate.swift */,
 				E404EACA2637C8D7000E4C5D /* Main.storyboard */,
 				E465D5B12647A8EC003A48C7 /* Investment Screens */,
-				E404EAC82637C8D7000E4C5D /* ViewController.swift */,
+				E46AA50E266744F400CD4FA2 /* Cross Platform */,
+				E46AA51A26674AED00CD4FA2 /* Prices */,
 				E4C7D80E2646F995003E5825 /* dataManagment.swift */,
 				E4AC79BB26483BEB00C8F7CC /* functions.swift */,
 				E4AC79BD26483C0200C8F7CC /* initialization.swift */,
@@ -138,6 +147,33 @@
 				E4AC79B52648272C00C8F7CC /* Add New */,
 			);
 			path = "Investment Screens";
+			sourceTree = "<group>";
+		};
+		E46AA50E266744F400CD4FA2 /* Cross Platform */ = {
+			isa = PBXGroup;
+			children = (
+				E46AA50F2667456300CD4FA2 /* crossPlatformStoryboard.storyboard */,
+				E46AA51726674A2600CD4FA2 /* Cells */,
+				E46AA511266747FF00CD4FA2 /* xPlatMain.swift */,
+				E46AA5132667489300CD4FA2 /* xPlatSettings.swift */,
+			);
+			path = "Cross Platform";
+			sourceTree = "<group>";
+		};
+		E46AA51726674A2600CD4FA2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E46AA51826674A7200CD4FA2 /* xPlatformSelection.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		E46AA51A26674AED00CD4FA2 /* Prices */ = {
+			isa = PBXGroup;
+			children = (
+				E404EAC82637C8D7000E4C5D /* ViewController.swift */,
+			);
+			path = Prices;
 			sourceTree = "<group>";
 		};
 		E4AC79B52648272C00C8F7CC /* Add New */ = {
@@ -230,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E404EAD12637C8D7000E4C5D /* LaunchScreen.storyboard in Resources */,
+				E46AA5102667456300CD4FA2 /* crossPlatformStoryboard.storyboard in Resources */,
 				E404EACE2637C8D7000E4C5D /* Assets.xcassets in Resources */,
 				E404EADA26386ABB000E4C5D /* GoogleService-Info.plist in Resources */,
 				E404EACC2637C8D7000E4C5D /* Main.storyboard in Resources */,
@@ -291,12 +328,15 @@
 				E404EAC92637C8D7000E4C5D /* ViewController.swift in Sources */,
 				E404EAC52637C8D7000E4C5D /* AppDelegate.swift in Sources */,
 				E494ABC0265B666F005ADBE6 /* rlInsiderChart.swift in Sources */,
+				E46AA51926674A7200CD4FA2 /* xPlatformSelection.swift in Sources */,
+				E46AA5142667489300CD4FA2 /* xPlatSettings.swift in Sources */,
 				E4AC79E22648F1F900C8F7CC /* boughtForCell.swift in Sources */,
 				E4C7D81826472C19003E5825 /* addNewItemSelection.swift in Sources */,
 				E4AC79B826482CED00C8F7CC /* itemCell.swift in Sources */,
 				E4C7D81626472BBC003E5825 /* addNewInvestment.swift in Sources */,
 				E465D5B32647A9C0003A48C7 /* itemSelectionCell.swift in Sources */,
 				E4C7D80F2646F995003E5825 /* dataManagment.swift in Sources */,
+				E46AA512266747FF00CD4FA2 /* xPlatMain.swift in Sources */,
 				E404EAC72637C8D7000E4C5D /* SceneDelegate.swift in Sources */,
 				E465D5B52647B301003A48C7 /* colourPickerCell.swift in Sources */,
 				E4AC79BE26483C0200C8F7CC /* initialization.swift in Sources */,

@@ -34,3 +34,6 @@ var currentAmount = 0
 
 //Edit Item
 var editingMode = false
+
+//Cross Platform Settings
+var xPlatData = [UserDefaults.standard.string(forKey: "platform1") ?? "PC", UserDefaults.standard.string(forKey: "platform2") ?? "Xbox"]

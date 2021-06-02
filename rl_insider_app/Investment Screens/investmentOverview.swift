@@ -321,7 +321,7 @@ extension investmentOverview: UITableViewDelegate, UITableViewDataSource
         
         if self.traitCollection.userInterfaceStyle == .dark
         {
-            cell.main.backgroundColor = .systemGray6
+            cell.main.backgroundColor = .systemGray5
         }
         else
         {

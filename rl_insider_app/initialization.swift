@@ -8,6 +8,8 @@
 import Foundation
 import Firebase
 
+var haveLoaded = false
+
 func initializeData()
 {
     let ref: DatabaseReference!
@@ -49,6 +51,7 @@ func initializeData()
             
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: NSNotification.Name("reloadItems"), object: nil)
+                haveLoaded = true
             }
         }
         catch
