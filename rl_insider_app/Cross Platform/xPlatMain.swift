@@ -64,13 +64,7 @@ class xPlatMain: UIViewController {
                 {
                     let platform1Price = Float(platform1PriceRange![0] + platform1PriceRange![1] / 2)
                     let platform2Price = Float(platform2PriceRange![0] + platform2PriceRange![1] / 2)
-                    
-                    var percentage = platform2Price / platform1Price * 100
-                    
-                    if percentage < 100
-                    {
-                        percentage = 100 - percentage * -1
-                    }
+                    let percentage = platform2Price / platform1Price * 100
                     
                     xPlatItems.append(xPlat(itemName: item.itemName, itemColour: colour, percentageIncrease: percentage, platform1Price: platform1PriceRange!, platform2Price: platform2PriceRange!))
                 }
