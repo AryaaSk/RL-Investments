@@ -150,7 +150,9 @@ parsedData = parseTable(tableContent, False) #now that we have the data, we just
 #print(parsedData[0].name)
 
 
-#I will have to make 4 datasets for each platform, then on the iOS app you will need to call the firebase API 4 times
+#I can save the data as a dictionary for each platform, with the key being the itemID
+#Then at the very end I can just combine all the data into 1 item, since it is a dictionary I can go straight to the wanted item instead of having to search the entire array
+#I just need to save all the itemIDs in1 array as well
 
 
 
