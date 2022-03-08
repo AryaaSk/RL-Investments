@@ -1,6 +1,8 @@
 #Using pyppeteer to get data from RL Insider, and render Javascript
 #For now Ill just use sample data since I dont want to wait 50 seconds everytime to run the program
 
+from bs4 import BeautifulSoup
+
 f = open("pcPricesSmall.html", "r")
 pcPrices = f.read()
 f.close()
@@ -9,59 +11,6 @@ f = open("ps4PricesSmall.html", "r")
 ps4Prices = f.read()
 f.close()
 
-
-
-
-#once i have the data i need to change it back to the old data structure since the old app is built on it.
-#Execute this function 1 or 2 times per day
-
-class prices:
-    default: list[int]
-    black: list[int]
-    white: list[int]
-    grey: list[int]
-    crimson: list[int]
-    pink: list[int]
-    cobalt: list[int]
-    skyBlue: list[int]
-    burntSienna: list[int]
-    saffron: list[int]
-    lime: list[int]
-    forestGreen: list[int]
-    orange: list[int]
-    purple: list[int]
-    def __init__(self, default, black, white, grey, crimson, pink, cobalt, skyBlue, burntSienna, saffron, lime, forestGreen, orange, purple):
-        self.default = default
-        self.black = black
-        self.white = white
-        self.grey = grey
-        self.crimson = crimson
-        self.pink = pink
-        self.cobalt = cobalt
-        self.skyBlue = skyBlue
-        self.burntSienna = burntSienna
-        self.saffron = saffron
-        self.lime = lime
-        self.forestGreen = forestGreen
-        self.orange = orange
-        self.purple = purple
-
-class item:
-    name: str
-    itemID: str
-    pc_prices: prices
-    xbox_prices: prices
-    ps4_prices: prices
-    switch_prices: prices
-    def __init__(self, name, pc_prices, xbox_prices, ps4_prices, switch_prices):
-        self.name = name
-        self.pc_prices = pc_prices
-        self.xbox_prices = xbox_prices
-        self.ps4_prices = ps4_prices
-        self.switch_prices = switch_prices
-
-
-from bs4 import BeautifulSoup
 
 def getData(soup, containerID):
     table = soup.find(id=containerID) #get container, e.g. paintedBMDecalsPrices
@@ -80,8 +29,7 @@ def getData(soup, containerID):
             
     return tableContent
 
-
-def parseTable(table, painted):
+def parseTable(table, platform):
     for row in table:
         itemName = row.find("div", {"class": "fnl"}).text
         
@@ -135,10 +83,12 @@ def parseTable(table, painted):
 
         print(itemName)
         print(default)
-        print(saffron)
 
+        #itemObject = 
 
-    #this will return a prices object
+        #then add all these to the platformList
+        #if platform == "pc"
+            
 
 
     
@@ -146,9 +96,14 @@ items = []
 
 pcSoup = BeautifulSoup(pcPrices, 'html.parser')
 tableContent = getData(pcSoup, "paintedBMDecalsPrices")
-parsedData = parseTable(tableContent, False) #now that we have the data, we just need to parse it
-#print(parsedData[0].name)
+parsedData = parseTable(tableContent, "pc") #now that we have the data, we just need to parse it
 
+#print(parsedData[0])
+
+pcItems = {}
+ps4Items = {}
+xboxItems = {}
+switchItems = {}
 
 #I can save the data as a dictionary for each platform, with the key being the itemID
 #Then at the very end I can just combine all the data into 1 item, since it is a dictionary I can go straight to the wanted item instead of having to search the entire array
