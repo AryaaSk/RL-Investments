@@ -12,7 +12,7 @@ class EnhancedJSONEncoder(json.JSONEncoder):
             return super().default(o)
 
 #url = 'https://rl.insider.gg/en/pc'
-url = "https://web.archive.org/web/20210413192353/https://rl.insider.gg/pc"
+url = "https://web.archive.org/web/20210303181400/https://rl.insider.gg/en/pc"
 r = requests.get(url)
 
 soup = BeautifulSoup(r.content, 'html.parser')
@@ -566,8 +566,6 @@ items = []
 #section = str(soup.find_all("div", id = "itemPricesContainer"))
 sectionSoup = str(soup.find_all("div", id = "paintedBMDecalsPricesContainer"))
 items = items + getItemsinSection(sectionSoup)
-
-"""
 sectionSoup = str(soup.find_all("div", id = "unpaintedBMDecalsPricesContainer"))
 items = items + getItemsinSection(sectionSoup)
 sectionSoup = str(soup.find_all("div", id = "paintedGoalExplosionsPricesContainer"))
@@ -634,7 +632,6 @@ sectionSoup = str(soup.find_all("div", id = "giftPacksPricesContainer"))
 items = items + getItemsinSection(sectionSoup)
 sectionSoup = str(soup.find_all("div", id = "paintFinishesPricesContainer"))
 items = items + getItemsinSection(sectionSoup)
-"""
 
 
 jsonList = []
