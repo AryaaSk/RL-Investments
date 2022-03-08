@@ -7,9 +7,51 @@ f = open("pcPricesSmall.html", "r")
 pcPrices = f.read()
 f.close()
 
-f = open("ps4PricesSmall.html", "r")
-ps4Prices = f.read()
-f.close()
+class prices:
+    default: list[int]
+    black: list[int]
+    white: list[int]
+    grey: list[int]
+    crimson: list[int]
+    pink: list[int]
+    cobalt: list[int]
+    skyBlue: list[int]
+    burntSienna: list[int]
+    saffron: list[int]
+    lime: list[int]
+    forestGreen: list[int]
+    orange: list[int]
+    purple: list[int]
+    def __init__(self, default, black, white, grey, crimson, pink, cobalt, skyBlue, burntSienna, saffron, lime, forestGreen, orange, purple):
+        self.default = default
+        self.black = black
+        self.white = white
+        self.grey = grey
+        self.crimson = crimson
+        self.pink = pink
+        self.cobalt = cobalt
+        self.skyBlue = skyBlue
+        self.burntSienna = burntSienna
+        self.saffron = saffron
+        self.lime = lime
+        self.forestGreen = forestGreen
+        self.orange = orange
+        self.purple = purple
+
+class itemData:
+    itemID: str
+    itemName: str
+    def __init__(self, ID, name):
+        self.itemID = ID
+        self.itemName = name
+
+
+items = []
+
+pcItems = {}
+ps4Items = {}
+xboxItems = {}
+switchItems = {}
 
 
 def getData(soup, containerID):
@@ -29,9 +71,17 @@ def getData(soup, containerID):
             
     return tableContent
 
-def parseTable(table, platform):
+
+import copy
+def parseTable(table, platform, getItemData):
     for row in table:
         itemName = row.find("div", {"class": "fnl"}).text
+
+        #also need to get the itemID
+        rowOuter = copy.copy(row)
+        rowOuter.string = ''
+        #now just need to get itemID from the row's outerHTML
+        itemID = "insert id here"
         
         tableData = row.findAll("td") #this is all the data in the row, the first is the itemName slot, then it goes onto the colours
         del tableData[0] #remove the name cell
@@ -55,12 +105,11 @@ def parseTable(table, platform):
                 num1 = float(splitPrice[0])
                 if k == True:
                     num1 = num1 * 1000
-
                 num2 = float(splitPrice[1])
                 if k == True:
                     num2 = num2 * 1000
                 
-                priceStrings.append([int(num1), int(num2)])
+                priceStrings.append([int(num1), int(num2)])                
 
             except Exception as e:
                 priceStrings.append(None)
@@ -81,29 +130,24 @@ def parseTable(table, platform):
         orange =  priceStrings[12]
         purple =  priceStrings[13]
 
-        print(itemName)
-        print(default)
-
-        #itemObject = 
+        itemObject = prices(default, black, white, grey, crimson, pink, cobalt, skyBlue, burntSienna, saffron, lime, forestGreen, orange, purple)
 
         #then add all these to the platformList
-        #if platform == "pc"
+        if platform == "pc":
+            pcItems[itemID] = itemObject
+
+        if getItemData == True:
+            #add it to the items list as well
+            items.append(itemData(itemID, itemName))
+
             
 
-
-    
-items = []
-
 pcSoup = BeautifulSoup(pcPrices, 'html.parser')
-tableContent = getData(pcSoup, "paintedBMDecalsPrices")
-parsedData = parseTable(tableContent, "pc") #now that we have the data, we just need to parse it
+tableContent = getData(pcSoup, "itemPricesContainer")
+parseTable(tableContent, "pc", True) #now that we have the data, we just need to parse it, and set the getItemData to true as the PC has the most prices for items
 
-#print(parsedData[0])
-
-pcItems = {}
-ps4Items = {}
-xboxItems = {}
-switchItems = {}
+print(items[len(items) - 1])
+print(pcItems)
 
 #I can save the data as a dictionary for each platform, with the key being the itemID
 #Then at the very end I can just combine all the data into 1 item, since it is a dictionary I can go straight to the wanted item instead of having to search the entire array
