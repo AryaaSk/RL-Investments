@@ -359,9 +359,7 @@ import json
 
 jsonList = []
 for item in oldItems:
-    first we need to stringify the item.itemPriceRange
-    JSONPriceRange = json.dumps(item.itemPriceRange.__dict__)
-    newItem = Item(item.itemName, JSONPriceRange, item.itemName)
+    newItem = Item(item.itemName, item.itemPriceRange.__dict__, item.itemName) #need to convert prices to dictionary as the json.dumps() can't convert an object to json
     JSON = json.dumps(newItem.__dict__)
     jsonList.append(JSON)
     
