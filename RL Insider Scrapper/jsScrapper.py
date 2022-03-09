@@ -3,7 +3,7 @@ import asyncio
 from pyppeteer import launch #pip install pyppeteer
 import time
 
-async def main():
+async def getRLInsiderData():
     browser = await launch(headless=True) #if you want to see it you can set headless=False
     page = await browser.newPage()
     await page.setViewport({ "width": 1920, "height": 1080}) #change the viewport so that the site doesn't redirect to mobile
@@ -38,7 +38,7 @@ async def main():
     
     return {"pc" : pcHTML, "ps4": ps4HTML, "xbox": xboxHTML, "switch" : switchHTML}
 
-HTMLResponse = asyncio.get_event_loop().run_until_complete(main()) #this line just runs the function
+HTMLResponse = asyncio.get_event_loop().run_until_complete(getRLInsiderData()) #this line just runs the function
 
 print("Got data from RLInsider")
 
