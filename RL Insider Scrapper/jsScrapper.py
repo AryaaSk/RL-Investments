@@ -66,6 +66,9 @@ ps4Items = {}
 xboxItems = {}
 switchItems = {}
 
+#I can save the data as a dictionary for each platform, with the key being the itemID
+#Then at the very end I can just combine all the data into 1 item, since it is a dictionary I can go straight to the wanted item instead of having to search the entire array
+#I just need to save all the itemIDs in1 array as well
 
 def getData(soup, containerID):
     table = soup.find(id=containerID) #get container, e.g. paintedBMDecalsPrices
@@ -251,6 +254,9 @@ class price:
     purple_switch_price: list[int]
     purple_xbox_price: list[int]
 
+    def __init__(self):
+        pass #don't want to write an init function for all of these attributes
+
 class Item:
     itemName: str
     itemPriceRange: str
@@ -260,13 +266,129 @@ class Item:
         self.itemPriceRange  = priceRange
         self.itemUrlName = url
 
-print(items[12].itemID)
-print(items[12].itemName)
-print(xboxItems["1"].__dict__) #zomba
 
-#I can save the data as a dictionary for each platform, with the key being the itemID
-#Then at the very end I can just combine all the data into 1 item, since it is a dictionary I can go straight to the wanted item instead of having to search the entire array
-#I just need to save all the itemIDs in1 array as well
+oldItems = [] #this is the list which we parse and send to firebase
+
+for i in items:
+    itemName = i.itemName
+    itemID = i.itemID
+    
+    pc = pcItems[itemID] #the prices
+    ps4 = ps4Items[itemID]
+    xbox = xboxItems[itemID]
+    switch = switchItems[itemID]
+
+    newPrice = price()
+
+    newPrice.pc_price = pc.white
+    newPrice.ps4_price = ps4.default
+    newPrice.switch_price = switch.default
+    newPrice.xbox_price = xbox.default
+    
+    newPrice.black_pc_price = pc.black
+    newPrice.black_ps4_price = ps4.black
+    newPrice.black_switch_price = switch.black
+    newPrice.black_xbox_price = xbox.black
+
+    newPrice.white_pc_price = pc.white
+    newPrice.white_ps4_price = ps4.white
+    newPrice.white_switch_price = switch.white
+    newPrice.white_xbox_price = xbox.white
+
+    newPrice.grey_pc_price = pc.grey
+    newPrice.grey_ps4_price = ps4.grey
+    newPrice.grey_switch_price = switch.grey
+    newPrice.grey_xbox_price = xbox.grey
+
+    newPrice.crimson_pc_price = pc.crimson
+    newPrice.crimson_ps4_price = ps4.crimson
+    newPrice.crimson_switch_price = switch.crimson
+    newPrice.crimson_xbox_price = xbox.crimson
+
+    newPrice.pink_pc_price = pc.pink
+    newPrice.pink_ps4_price = ps4.pink
+    newPrice.pink_switch_price = switch.pink
+    newPrice.pink_xbox_price = xbox.pink
+
+    newPrice.cobalt_pc_price = pc.cobalt
+    newPrice.cobalt_ps4_price = ps4.cobalt
+    newPrice.cobalt_switch_price = switch.cobalt
+    newPrice.cobalt_xbox_price = xbox.cobalt
+
+    newPrice.skyBlue_pc_price = pc.skyBlue
+    newPrice.skyBlue_ps4_price = ps4.skyBlue
+    newPrice.skyBlue_switch_price = switch.skyBlue
+    newPrice.skyBlue_xbox_price = xbox.skyBlue
+
+    newPrice.burntSienna_pc_price = pc.burntSienna
+    newPrice.burntSienna_ps4_price = ps4.burntSienna
+    newPrice.burntSienna_switch_price = switch.burntSienna
+    newPrice.burntSienna_xbox_price = xbox.burntSienna
+
+    newPrice.saffron_pc_price = pc.saffron
+    newPrice.saffron_ps4_price = ps4.saffron
+    newPrice.saffron_switch_price = switch.saffron
+    newPrice.saffron_xbox_price = xbox.saffron
+
+    newPrice.lime_pc_price = pc.lime
+    newPrice.lime_ps4_price = ps4.lime
+    newPrice.lime_switch_price = switch.lime
+    newPrice.lime_xbox_price = xbox.lime
+
+    newPrice.forestGreen_pc_price = pc.forestGreen
+    newPrice.forestGreen_ps4_price = ps4.forestGreen
+    newPrice.forestGreen_switch_price = switch.forestGreen
+    newPrice.forestGreen_xbox_price = xbox.forestGreen
+
+    newPrice.orange_pc_price = pc.orange
+    newPrice.orange_ps4_price = ps4.orange
+    newPrice.orange_switch_price = switch.orange
+    newPrice.orange_xbox_price = xbox.orange
+
+    newPrice.purple_pc_price = pc.purple
+    newPrice.purple_ps4_price = ps4.purple
+    newPrice.purple_switch_price = switch.purple
+    newPrice.purple_xbox_price = xbox.purple
+
+    #finally compile all this into a item()
+    oldItems.append(Item(itemName, newPrice, itemName))
+
+
+#stringify the oldItems list
+import json
+
+jsonList = []
+for item in oldItems:
+    first we need to stringify the item.itemPriceRange
+    JSONPriceRange = json.dumps(item.itemPriceRange.__dict__)
+    newItem = Item(item.itemName, JSONPriceRange, item.itemName)
+    JSON = json.dumps(newItem.__dict__)
+    jsonList.append(JSON)
+    
+JSONString = """
+                {"items" : [ 
+                 """
+for json in jsonList:
+        JSONString = JSONString + json + ","
+JSONString = JSONString[:-1] #remove the final ","
+JSONString = JSONString + "]}"
+
+print(JSONString)
+
+#upload to firebase
+import pyrebase
+config = {
+  "apiKey": "apiKey",
+  "authDomain": "rlinsiderprices.firebaseapp.com",
+  "databaseURL": "https://rlinsiderprices-default-rtdb.firebaseio.com",
+  "storageBucket": "rlinsiderprices.appspot.com"
+}
+
+firebase = pyrebase.initialize_app(config)
+
+db = firebase.database()
+db.child("prices").set(JSONString)
+    
 
 
 
