@@ -1,25 +1,55 @@
 #Using pyppeteer to get data from RL Insider, and render Javascript
-#For now Ill just use sample data since I dont want to wait 50 seconds everytime to run the program
+import asyncio
+from pyppeteer import launch #pip install pyppeteer
+import time
 
-from bs4 import BeautifulSoup
+async def main():
+    browser = await launch(headless=True) #if you want to see it you can set headless=False
+    page = await browser.newPage()
+    await page.setViewport({ "width": 1920, "height": 1080}) #change the viewport so that the site doesn't redirect to mobile
 
-f = open("pcHTML.html", "r")
-pcPrices = f.read()
-f.close()
+    waitTime = 50
+    
+    await page.goto('https://rl.insider.gg/en/pc')
+    time.sleep(waitTime) #to try and wait for the all the items to load
+    pcHTML = await page.evaluate('''() => {
+        return document.body.innerHTML;
+    }''')
 
-f = open("ps4HTML.html", "r")
-ps4Prices = f.read()
-f.close()
+    await page.goto('https://rl.insider.gg/en/ps4')
+    time.sleep(waitTime) #to try and wait for the all the items to load
+    ps4HTML = await page.evaluate('''() => {
+        return document.body.innerHTML;
+    }''')
 
-f = open("xboxHTML.html", "r")
-xboxPrices = f.read()
-f.close()
+    await page.goto('https://rl.insider.gg/en/xbox')
+    time.sleep(waitTime) #to try and wait for the all the items to load
+    xboxHTML = await page.evaluate('''() => {
+        return document.body.innerHTML;
+    }''')
 
-f = open("switchHTML.html", "r")
-switchPrices = f.read()
-f.close()
+    await page.goto('https://rl.insider.gg/en/switch')
+    time.sleep(waitTime) #to try and wait for the all the items to load
+    switchHTML = await page.evaluate('''() => {
+        return document.body.innerHTML;
+    }''')
+
+    await browser.close()
+    
+    return {"pc" : pcHTML, "ps4": ps4HTML, "xbox": xboxHTML, "switch" : switchHTML}
+
+HTMLResponse = asyncio.get_event_loop().run_until_complete(main()) #this line just runs the function
+
+print("Got data from RLInsider")
+
+pcPrices = HTMLResponse["pc"]
+ps4Prices = HTMLResponse["ps4"]
+xboxPrices = HTMLResponse["xbox"]
+switchPrices = HTMLResponse["switch"]
 
 #Algorithm:
+from bs4 import BeautifulSoup
+
 class prices:
     default: list[int]
     black: list[int]
@@ -353,6 +383,8 @@ for i in items:
     #finally compile all this into a item()
     oldItems.append(Item(itemName, newPrice, itemName))
 
+
+print("Parsed Data")
 
 #stringify the oldItems list
 import json
