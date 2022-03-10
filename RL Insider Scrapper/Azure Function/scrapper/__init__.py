@@ -14,49 +14,77 @@ import pyrebase
 def main(req: func.HttpRequest) -> func.HttpResponse:
     #Using pyppeteer to get data from RL Insider, and render Javascript
 
-    async def getRLInsiderData():
+    logging.info("started")
+
+
+    #WHEN THE WAIT TIME IS HIGH, THE PROGRAM CRASHES FOR SOME REASON, IT MAY BE BECAUSE IT TIMES OUT, OR BECAUSE IT RUNS OUT OF MEMORY
+    #Works quite reliably when it is at 10, but you need at least 30 to get all data
+    waitTime = 60
+
+    currentHTML = "" #to help save memory
+
+    async def getRLInsiderDataPC():
         browser = await launch(headless=True,handleSIGINT=False, handleSIGTERM=False, handleSIGHUP=False) #if you want to see it you can set headless=False
         page = await browser.newPage()
         await page.setViewport({ "width": 1920, "height": 1080}) #change the viewport so that the site doesn't redirect to mobile
-
-        waitTime = 50
-        
+        logging.info("initizalized browser")
         await page.goto('https://rl.insider.gg/en/pc')
         time.sleep(waitTime) #to try and wait for the all the items to load
-        pcHTML = await page.evaluate('''() => {
+        currentHTML = await page.evaluate('''() => {
             return document.body.innerHTML;
         }''')
+        await browser.close()
+        return currentHTML
 
+    async def getRLInsiderDataPS4():
+        browser = await launch(headless=True,handleSIGINT=False, handleSIGTERM=False, handleSIGHUP=False) #if you want to see it you can set headless=False
+        page = await browser.newPage()
+        await page.setViewport({ "width": 1920, "height": 1080}) #change the viewport so that the site doesn't redirect to mobile
+        logging.info("initizalized browser")
         await page.goto('https://rl.insider.gg/en/ps4')
         time.sleep(waitTime) #to try and wait for the all the items to load
-        ps4HTML = await page.evaluate('''() => {
+        currentHTML = await page.evaluate('''() => {
             return document.body.innerHTML;
         }''')
+        await browser.close()
+        return currentHTML
 
+    async def getRLInsiderDataXbox():
+        browser = await launch(headless=True,handleSIGINT=False, handleSIGTERM=False, handleSIGHUP=False) #if you want to see it you can set headless=False
+        page = await browser.newPage()
+        await page.setViewport({ "width": 1920, "height": 1080}) #change the viewport so that the site doesn't redirect to mobile
+        logging.info("initizalized browser")
         await page.goto('https://rl.insider.gg/en/xbox')
         time.sleep(waitTime) #to try and wait for the all the items to load
-        xboxHTML = await page.evaluate('''() => {
+        currentHTML = await page.evaluate('''() => {
             return document.body.innerHTML;
         }''')
+        await browser.close()
+        return currentHTML
 
+    async def getRLInsiderDataSwitch():
+        browser = await launch(headless=True,handleSIGINT=False, handleSIGTERM=False, handleSIGHUP=False) #if you want to see it you can set headless=False
+        page = await browser.newPage()
+        await page.setViewport({ "width": 1920, "height": 1080}) #change the viewport so that the site doesn't redirect to mobile
+        logging.info("initizalized browser")
         await page.goto('https://rl.insider.gg/en/switch')
         time.sleep(waitTime) #to try and wait for the all the items to load
-        switchHTML = await page.evaluate('''() => {
+        currentHTML = await page.evaluate('''() => {
             return document.body.innerHTML;
         }''')
-
         await browser.close()
-        
-        return {"pc" : pcHTML, "ps4": ps4HTML, "xbox": xboxHTML, "switch" : switchHTML}
+        return currentHTML
 
-    HTMLResponse = asyncio.run(getRLInsiderData()) #this line just runs the function
+    pcPrices = asyncio.run(getRLInsiderDataPC()) #this line just runs the function
+    logging.info("Got PC")
+    ps4Prices = asyncio.run(getRLInsiderDataPS4())
+    logging.info("Got PS4")
+    xboxPrices = asyncio.run(getRLInsiderDataXbox())
+    logging.info("Got Xbox")
+    switchPrices = asyncio.run(getRLInsiderDataSwitch())
+    logging.info("Got Switch")
 
     logging.info("Got data from RLInsider")
-
-    pcPrices = HTMLResponse["pc"]
-    ps4Prices = HTMLResponse["ps4"]
-    xboxPrices = HTMLResponse["xbox"]
-    switchPrices = HTMLResponse["switch"]
 
     #Algorithm:
     class prices:
@@ -128,7 +156,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     def parseTable(table, platform, getItemData):
         for row in table:
-            itemName = row.find("div", {"class": "fnl"}).text
+            try:
+                itemName = row.find("div", {"class": "fnl"}).text
+            except:
+                #if the itemName doesnt exist then nothing else will, so just move past this iteration
+                continue
 
             #also need to get the itemID
             rowOuter = copy.copy(row)
@@ -207,17 +239,25 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     tableContent = getData(soup, "itemPricesContainer")
     parseTable(tableContent, "pc", True) #now that we have the data, we just need to parse it, and set the getItemData to true as the PC has the most prices for items
 
+    logging.info("Parsed PC")
+
     soup = BeautifulSoup(ps4Prices, 'html.parser')
     tableContent = getData(soup, "itemPricesContainer")
     parseTable(tableContent, "ps4", False)
+
+    logging.info("Parsed Ps4")
 
     soup = BeautifulSoup(xboxPrices, 'html.parser')
     tableContent = getData(soup, "itemPricesContainer")
     parseTable(tableContent, "xbox", False)
 
+    logging.info("Parsed xbox")
+
     soup = BeautifulSoup(switchPrices, 'html.parser')
     tableContent = getData(soup, "itemPricesContainer")
     parseTable(tableContent, "switch", False)
+
+    logging.info("Parsed Switch")
 
     #now that we have all the data, we need to loop through the items array and compile all the data from each price list into 1 list of class
     class price:
@@ -310,10 +350,32 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         itemName = i.itemName
         itemID = i.itemID
         
-        pc = pcItems[itemID] #the prices
-        ps4 = ps4Items[itemID]
-        xbox = xboxItems[itemID]
-        switch = switchItems[itemID]
+        pc = prices(None, None, None, None, None, None, None, None, None, None, None, None, None, None)
+        try:
+            pc = pcItems[itemID] #the prices
+        except:
+            pass
+
+        ps4 = prices(None, None, None, None, None, None, None, None, None, None, None, None, None, None)
+        try:
+            ps4 = ps4Items[itemID]
+        except:
+            pass
+
+        xbox = prices(None, None, None, None, None, None, None, None, None, None, None, None, None, None)
+        try:
+            xbox = xboxItems[itemID]
+        except:
+            pass
+        
+        switch = prices(None, None, None, None, None, None, None, None, None, None, None, None, None, None)
+        try:
+            switch = switchItems[itemID]
+        except:
+            pass
+        
+        
+         #THIS LINE KEEP CAUSING PROBLEMS I DON'T KNOW WHY
 
         newPrice = price()
 
@@ -391,7 +453,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         oldItems.append(Item(itemName, newPrice, itemName))
 
 
-    logging.info("Parsed Data")
+    logging.info("Converted to old structure")
 
     #stringify the oldItems list
 
