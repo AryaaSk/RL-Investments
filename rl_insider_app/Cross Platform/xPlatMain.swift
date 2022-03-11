@@ -27,12 +27,12 @@ class xPlatMain: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name("reloadPlatforms"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name("reloadItems"), object: nil)
         
-        self.title = "\(xPlatData[0]) -> \(xPlatData[1])"
+        self.navigationItem.title = "\(xPlatData[0]) -> \(xPlatData[1])"
     }
     
     @objc func reloadTableView()
     {
-        self.title = "\(xPlatData[0]) -> \(xPlatData[1])"
+        self.navigationItem.title = "\(xPlatData[0]) -> \(xPlatData[1])"
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
         tableView.isHidden = false
