@@ -16,4 +16,4 @@ There is also a cross-platform section, which allows you to transfer credits fro
 This is just a simple list of all the items and their respective prices.
 
 Here are some previews:
-
+![Previews](https://github.com/AryaaSk/RL-Investments/blob/main/Previews/Previews.png?raw=true)
