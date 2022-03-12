@@ -1,7 +1,6 @@
 # RL Investments
 ## I don't know if there is any copyright or law that prevents me from using the RL Insider data, so I'm not going to release this app on the app store.
 
-## Also the file structure is very unorgainzed since I made this project over a year ago while I was still learning
 
 An app which helps you track your investments in the popular game Rocket League. There is an active trading scene in this game with the primary currency being credits, many people make investments and try and sell later on when the price of the item has gone up in price.
 
