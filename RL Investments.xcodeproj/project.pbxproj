@@ -491,6 +491,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = rl_insider_app/rl_insider_app.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = R7WQ479X2H;
 				INFOPLIST_FILE = rl_insider_app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -513,6 +514,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = rl_insider_app/rl_insider_app.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = R7WQ479X2H;
 				INFOPLIST_FILE = rl_insider_app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

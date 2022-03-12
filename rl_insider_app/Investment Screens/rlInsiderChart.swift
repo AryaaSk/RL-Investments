@@ -28,18 +28,19 @@ class rlInsiderChart: UIViewController, WKNavigationDelegate{
         }
         
         var urlString = ""
+        let itemURLName = investments[cellTag].item.itemUrlName.replacingOccurrences(of: " ", with: "_") //need to fix this a little bit since the new algorithm seems to not be working
         
         //now we construct the url
         if investments[cellTag].platform.uppercased() != "PS4"
         {
             urlString = """
-                https://rl.insider.gg/en/\(investments[cellTag].platform.uppercased().lowercased())/\(investments[cellTag].item.itemUrlName)/\(insiderColours[i])
+                https://rl.insider.gg/en/\(investments[cellTag].platform.uppercased().lowercased())/\(itemURLName)/\(insiderColours[i])
                 """
         }
         else
         {
             urlString = """
-                https://rl.insider.gg/en/psn/\(investments[cellTag].item.itemUrlName)/\(insiderColours[i])
+                https://rl.insider.gg/en/psn/\(itemURLName)/\(insiderColours[i])
                 """
         }
         
